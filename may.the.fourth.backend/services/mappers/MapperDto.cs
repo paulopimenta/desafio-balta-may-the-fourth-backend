@@ -1,34 +1,69 @@
 using May.The.Fourth.Backend.Data.Entities;
+using May.The.Fourth.Backend.Services.Dtos;
 
-namespace May.The.Fourth.Backend.Services.Mappers
-{
-    public static class MapperDto
+namespace May.The.Fourth.Backend.Services.Mappers;
+
+public static class MapperDto
     {
-        public static FilmeDto MapToFilmDto(FilmeEntity filme)
+        private static MovieDto MapToMovieDto(MovieEntity? movie)
         {
-            if (filme == null)
-                return new FilmeDto();
-            return new FilmeDto
+            if (movie == null)
+                return new MovieDto();
+            
+            return new MovieDto
             {
-                Id = filme.Id,
-                Titulo = filme.Titulo,
-                Episodio = filme.Episodio,
-                TextoAbertura = filme.TextoAbertura,
-                Diretor = filme.Diretor,
-                Produtor = filme.Produtor,
-                DataLancamento = filme.DataLancamento
+                Id = movie.Id,
+                Title = movie.Title,
+                Episode = movie.Episode,
+                OpeningCrawl = movie.OpeningCrawl,
+                Director = movie.Director,
+                Producer = movie.Producer,
+                ReleaseDate = movie.ReleaseDate
             };
         }
 
-        public static IList<FilmeDto> MapToFilmDto(IList<FilmeEntity> filmeEntities)
+        public static IList<MovieDto> MapToMovieDto(IList<MovieEntity> movieEntities)
         {
-            IList<FilmeDto> filmes = new List<FilmeDto>();
-            if (filmeEntities.Any())
+            var movies = new List<MovieDto>();
+            
+            if (!movieEntities.Any()) return movies;
+            movies.AddRange(movieEntities.Select(MapToMovieDto));
+            
+            return movies;
+        }
+        
+        private static StarshipDto MapToStarshipDto(StarshipEntity? starship)
+        {
+            if (starship == null)
+                return new StarshipDto();
+            
+            return new StarshipDto
             {
-                foreach (var filmeEntity in filmeEntities)
-                    filmes.Add(MapToFilmDto(filmeEntity));
-            }
-            return filmes;
+                Id = starship.Id,
+                Name = starship.Name,
+                Model = starship.Model,
+                Manufacturer = starship.Manufacturer,
+                CostInCredits = starship.CostInCredits,
+                Length = starship.Length,
+                MaxSpeed = starship.MaxSpeed,
+                Crew = starship.Crew,
+                Passengers = starship.Passengers,
+                CargoCapacity = starship.CargoCapacity,
+                HyperdriveRating = starship.HyperdriveRating,
+                Mglt = starship.Mglt,
+                Consumables = starship.Consumables,
+                Class = starship.Class,
+            };
+        }
+
+        public static IList<StarshipDto> MapToStarshipDto(IList<StarshipEntity> starshipEntities)
+        {
+            var starships = new List<StarshipDto>();
+            
+            if (!starshipEntities.Any()) return starships;
+            
+            starships.AddRange(starshipEntities.Select(MapToStarshipDto));
+            
+            return starships;
         }
     }
-}
