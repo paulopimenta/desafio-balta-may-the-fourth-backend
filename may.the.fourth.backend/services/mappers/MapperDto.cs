@@ -31,7 +31,7 @@ namespace May.The.Fourth.Backend.Services.Mappers
             return filmes;
         }
 
-        public static CharacterDto MapToCharacterDto(CharacterEntity character)
+        private static CharacterDto MapToCharacterDto(CharacterEntity character)
         {
             if (character == null)
                 return new CharacterDto();
