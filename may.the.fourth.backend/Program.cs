@@ -36,9 +36,11 @@ builder.Services.AddSwaggerGen(options =>
     options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
 });
 builder.Services.AddScoped<IFilmeRepository, FilmeRepository>();
+builder.Services.AddScoped<IVehicleRepository, VehicleRepository>();
 builder.Services.AddScoped<IPlanetRepository, PlanetRepository>();
 builder.Services.AddScoped<IFilmeService, FilmeService>();
 builder.Services.AddScoped<IPlanetService, PlanetService>();
+builder.Services.AddScoped<IVehicleService, VehicleService>();
 
 builder.Services.AddEntityFrameworkNpgsql();
 var connection = builder.Configuration.GetConnectionString("StarWarsConnection");
@@ -57,6 +59,7 @@ var endpoints = app.MapGroup("/star-wars");
 endpoints.MapGet("/", () => "Hello Star Wars World!");
 endpoints.MapGet("/filmes", GetFilmes);
 endpoints.MapGet("/planets", GetPlanets);
+endpoints.MapGet("/vehicles", GetVehicles);
 
 app.UseSwaggerUI(options =>
 {
@@ -78,6 +81,14 @@ static async Task<IResult> GetFilmes(IFilmeService filmeService)
 static async Task<IResult> GetPlanets(IPlanetService planetService)
 {
     var result = await planetService.GetPlanets();
+    return result.Success 
+        ? TypedResults.Ok(result) 
+        : TypedResults.BadRequest(result);
+}
+
+static async Task<IResult> GetVehicles(IVehicleService vehicleService)
+{
+    var result = await vehicleService.GetVehicles();
     return result.Success 
         ? TypedResults.Ok(result) 
         : TypedResults.BadRequest(result);
