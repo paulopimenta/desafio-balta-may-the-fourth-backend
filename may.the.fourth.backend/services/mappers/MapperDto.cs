@@ -4,7 +4,7 @@ namespace May.The.Fourth.Backend.Services.Mappers
 {
     public static class MapperDto
     {
-        public static FilmeDto MapToFilmDto(FilmeEntity filme)
+        private static FilmeDto MapToFilmDto(FilmeEntity filme)
         {
             if (filme == null)
                 return new FilmeDto();
@@ -31,7 +31,7 @@ namespace May.The.Fourth.Backend.Services.Mappers
             return filmes;
         }
 
-        public static PlanetDto MapToPlanetDto(PlanetEntity planet)
+        private static PlanetDto MapToPlanetDto(PlanetEntity planet)
         {
             if (planet == null)
                 return new PlanetDto();
@@ -59,6 +59,38 @@ namespace May.The.Fourth.Backend.Services.Mappers
                     planets.Add(MapToPlanetDto(planetEntity));
             }
             return planets;
+        }
+
+        private static VehicleDto MapToVehicleDto(VehicleEntity vehicle)
+        {
+            if (vehicle == null)
+                return new VehicleDto();
+            return new VehicleDto
+            {
+                Id = vehicle.Id,
+                Name = vehicle.Name,
+                Model = vehicle.Model,
+                Manufacturer = vehicle.Manufacturer,
+                CostInCredits = vehicle.CostInCredits,
+                Length = vehicle.Length,
+                MaxSpeed = vehicle.MaxSpeed,
+                Crew = vehicle.Crew,
+                Passengers = vehicle.Passengers,
+                CargoCapacity = vehicle.CargoCapacity,
+                Consumables = vehicle.Consumables,
+                Class = vehicle.Class
+            };
+        }
+
+        public static IList<VehicleDto> MapToVehicleDto(IList<VehicleEntity> vehicleEntities)
+        {
+            IList<VehicleDto> vehicles = new List<VehicleDto>();
+            if (vehicleEntities.Any())
+            {
+                foreach (var vehicleEntity in vehicleEntities)
+                    vehicles.Add(MapToVehicleDto(vehicleEntity));
+            }
+            return vehicles;
         }
     }
 }

@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace may.the.fourth.backend.data.migrations
 {
     [DbContext(typeof(StarWarsContext))]
-    [Migration("20240426050140_InitialCreate")]
-    partial class InitialCreate
+    [Migration("20240428025114_CreateCharacterTable")]
+    partial class CreateCharacterTable
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -367,6 +367,227 @@ namespace may.the.fourth.backend.data.migrations
                             RotationPeriod = "27",
                             SurfaceWater = "100",
                             Terrain = "ocean"
+                        });
+                });
+
+            modelBuilder.Entity("May.The.Fourth.Backend.Data.Entities.VehicleEntity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INT")
+                        .HasColumnName("VehicleID");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("CargoCapacity")
+                        .IsRequired()
+                        .HasColumnType("VARCHAR(50)")
+                        .HasColumnName("CargoCapacity");
+
+                    b.Property<string>("Class")
+                        .IsRequired()
+                        .HasColumnType("VARCHAR(50)")
+                        .HasColumnName("Class");
+
+                    b.Property<string>("Consumables")
+                        .IsRequired()
+                        .HasColumnType("VARCHAR(50)")
+                        .HasColumnName("Consumables");
+
+                    b.Property<string>("CostInCredits")
+                        .IsRequired()
+                        .HasColumnType("VARCHAR(50)")
+                        .HasColumnName("CostInCredits");
+
+                    b.Property<string>("Crew")
+                        .IsRequired()
+                        .HasColumnType("VARCHAR(50)")
+                        .HasColumnName("Crew");
+
+                    b.Property<string>("Length")
+                        .IsRequired()
+                        .HasColumnType("VARCHAR(50)")
+                        .HasColumnName("Length");
+
+                    b.Property<string>("Manufacturer")
+                        .IsRequired()
+                        .HasColumnType("VARCHAR(255)")
+                        .HasColumnName("Manufacturer");
+
+                    b.Property<string>("MaxSpeed")
+                        .IsRequired()
+                        .HasColumnType("VARCHAR(50)")
+                        .HasColumnName("MaxSpeed");
+
+                    b.Property<string>("Model")
+                        .IsRequired()
+                        .HasColumnType("VARCHAR(255)")
+                        .HasColumnName("Model");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("VARCHAR(255)")
+                        .HasColumnName("Name");
+
+                    b.Property<string>("Passengers")
+                        .IsRequired()
+                        .HasColumnType("VARCHAR(50)")
+                        .HasColumnName("Passengers");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Vehicles");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 4,
+                            CargoCapacity = "50000",
+                            Class = "wheeled",
+                            Consumables = "2 months",
+                            CostInCredits = "150000",
+                            Crew = "46",
+                            Length = "36.8",
+                            Manufacturer = "Corellia Mining Corporation",
+                            MaxSpeed = "30",
+                            Model = "Digger Crawler",
+                            Name = "Sand Crawler",
+                            Passengers = "30"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            CargoCapacity = "50",
+                            Class = "repulsorcraft",
+                            Consumables = "0",
+                            CostInCredits = "14500",
+                            Crew = "1",
+                            Length = "10.4",
+                            Manufacturer = "Incom Corporation",
+                            MaxSpeed = "1200",
+                            Model = "T-16 skyhopper",
+                            Name = "T-16 skyhopper",
+                            Passengers = "1"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            CargoCapacity = "5",
+                            Class = "repulsorcraft",
+                            Consumables = "unknown",
+                            CostInCredits = "10550",
+                            Crew = "1",
+                            Length = "3.4",
+                            Manufacturer = "SoroSuub Corporation",
+                            MaxSpeed = "250",
+                            Model = "X-34 landspeeder",
+                            Name = "X-34 landspeeder",
+                            Passengers = "1"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            CargoCapacity = "65",
+                            Class = "starfighter",
+                            Consumables = "2 days",
+                            CostInCredits = "unknown",
+                            Crew = "1",
+                            Length = "6.4",
+                            Manufacturer = "Sienar Fleet Systems",
+                            MaxSpeed = "1200",
+                            Model = "Twin Ion Engine/Ln Starfighter",
+                            Name = "TIE/LN starfighter",
+                            Passengers = "0"
+                        },
+                        new
+                        {
+                            Id = 14,
+                            CargoCapacity = "10",
+                            Class = "airspeeder",
+                            Consumables = "none",
+                            CostInCredits = "unknown",
+                            Crew = "2",
+                            Length = "4.5",
+                            Manufacturer = "Incom corporation",
+                            MaxSpeed = "650",
+                            Model = "t-47 airspeeder",
+                            Name = "Snowspeeder",
+                            Passengers = "0"
+                        },
+                        new
+                        {
+                            Id = 16,
+                            CargoCapacity = "none",
+                            Class = "space/planetary bomber",
+                            Consumables = "2 days",
+                            CostInCredits = "unknown",
+                            Crew = "1",
+                            Length = "7.8",
+                            Manufacturer = "Sienar Fleet Systems",
+                            MaxSpeed = "850",
+                            Model = "TIE/sa bomber",
+                            Name = "TIE bomber",
+                            Passengers = "0"
+                        },
+                        new
+                        {
+                            Id = 18,
+                            CargoCapacity = "1000",
+                            Class = "assault walker",
+                            Consumables = "unknown",
+                            CostInCredits = "unknown",
+                            Crew = "5",
+                            Length = "20",
+                            Manufacturer = "Kuat Drive Yards, Imperial Department of Military Research",
+                            MaxSpeed = "60",
+                            Model = "All Terrain Armored Transport",
+                            Name = "AT-AT",
+                            Passengers = "40"
+                        },
+                        new
+                        {
+                            Id = 19,
+                            CargoCapacity = "200",
+                            Class = "walker",
+                            Consumables = "none",
+                            CostInCredits = "unknown",
+                            Crew = "2",
+                            Length = "2",
+                            Manufacturer = "Kuat Drive Yards, Imperial Department of Military Research",
+                            MaxSpeed = "90",
+                            Model = "All Terrain Scout Transport",
+                            Name = "AT-ST",
+                            Passengers = "0"
+                        },
+                        new
+                        {
+                            Id = 20,
+                            CargoCapacity = "10",
+                            Class = "repulsorcraft",
+                            Consumables = "1 day",
+                            CostInCredits = "75000",
+                            Crew = "2",
+                            Length = "7",
+                            Manufacturer = "Bespin Motors",
+                            MaxSpeed = "1500",
+                            Model = "Storm IV Twin-Pod",
+                            Name = "Storm IV Twin-Pod cloud car",
+                            Passengers = "0"
+                        },
+                        new
+                        {
+                            Id = 24,
+                            CargoCapacity = "2000000",
+                            Class = "sail barge",
+                            Consumables = "Live food tanks",
+                            CostInCredits = "285000",
+                            Crew = "26",
+                            Length = "30",
+                            Manufacturer = "Ubrikkian Industries Custom Vehicle Division",
+                            MaxSpeed = "100",
+                            Model = "Modified Luxury Sail Barge",
+                            Name = "Sail barge",
+                            Passengers = "500"
                         });
                 });
 

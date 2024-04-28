@@ -9,7 +9,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace may.the.fourth.backend.data.migrations
 {
     /// <inheritdoc />
-    public partial class InitialCreate : Migration
+    public partial class CreateCharacterTable : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -51,6 +51,29 @@ namespace may.the.fourth.backend.data.migrations
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Planets", x => x.PlanetID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Vehicles",
+                columns: table => new
+                {
+                    VehicleID = table.Column<int>(type: "INT", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Name = table.Column<string>(type: "VARCHAR(255)", nullable: false),
+                    Model = table.Column<string>(type: "VARCHAR(255)", nullable: false),
+                    Manufacturer = table.Column<string>(type: "VARCHAR(255)", nullable: false),
+                    CostInCredits = table.Column<string>(type: "VARCHAR(50)", nullable: false),
+                    Length = table.Column<string>(type: "VARCHAR(50)", nullable: false),
+                    MaxSpeed = table.Column<string>(type: "VARCHAR(50)", nullable: false),
+                    Crew = table.Column<string>(type: "VARCHAR(50)", nullable: false),
+                    Passengers = table.Column<string>(type: "VARCHAR(50)", nullable: false),
+                    CargoCapacity = table.Column<string>(type: "VARCHAR(50)", nullable: false),
+                    Consumables = table.Column<string>(type: "VARCHAR(50)", nullable: false),
+                    Class = table.Column<string>(type: "VARCHAR(50)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Vehicles", x => x.VehicleID);
                 });
 
             migrationBuilder.CreateTable(
@@ -106,6 +129,23 @@ namespace may.the.fourth.backend.data.migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "Vehicles",
+                columns: new[] { "VehicleID", "CargoCapacity", "Class", "Consumables", "CostInCredits", "Crew", "Length", "Manufacturer", "MaxSpeed", "Model", "Name", "Passengers" },
+                values: new object[,]
+                {
+                    { 4, "50000", "wheeled", "2 months", "150000", "46", "36.8", "Corellia Mining Corporation", "30", "Digger Crawler", "Sand Crawler", "30" },
+                    { 6, "50", "repulsorcraft", "0", "14500", "1", "10.4", "Incom Corporation", "1200", "T-16 skyhopper", "T-16 skyhopper", "1" },
+                    { 7, "5", "repulsorcraft", "unknown", "10550", "1", "3.4", "SoroSuub Corporation", "250", "X-34 landspeeder", "X-34 landspeeder", "1" },
+                    { 8, "65", "starfighter", "2 days", "unknown", "1", "6.4", "Sienar Fleet Systems", "1200", "Twin Ion Engine/Ln Starfighter", "TIE/LN starfighter", "0" },
+                    { 14, "10", "airspeeder", "none", "unknown", "2", "4.5", "Incom corporation", "650", "t-47 airspeeder", "Snowspeeder", "0" },
+                    { 16, "none", "space/planetary bomber", "2 days", "unknown", "1", "7.8", "Sienar Fleet Systems", "850", "TIE/sa bomber", "TIE bomber", "0" },
+                    { 18, "1000", "assault walker", "unknown", "unknown", "5", "20", "Kuat Drive Yards, Imperial Department of Military Research", "60", "All Terrain Armored Transport", "AT-AT", "40" },
+                    { 19, "200", "walker", "none", "unknown", "2", "2", "Kuat Drive Yards, Imperial Department of Military Research", "90", "All Terrain Scout Transport", "AT-ST", "0" },
+                    { 20, "10", "repulsorcraft", "1 day", "75000", "2", "7", "Bespin Motors", "1500", "Storm IV Twin-Pod", "Storm IV Twin-Pod cloud car", "0" },
+                    { 24, "2000000", "sail barge", "Live food tanks", "285000", "26", "30", "Ubrikkian Industries Custom Vehicle Division", "100", "Modified Luxury Sail Barge", "Sail barge", "500" }
+                });
+
+            migrationBuilder.InsertData(
                 table: "FilmsPlanets",
                 column: "PlanetID",
                 values: new object[]
@@ -131,6 +171,9 @@ namespace may.the.fourth.backend.data.migrations
 
             migrationBuilder.DropTable(
                 name: "FilmsPlanets");
+
+            migrationBuilder.DropTable(
+                name: "Vehicles");
 
             migrationBuilder.DropTable(
                 name: "Planets");
