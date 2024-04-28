@@ -12,8 +12,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace may.the.fourth.backend.data.migrations
 {
     [DbContext(typeof(StarWarsContext))]
-    [Migration("20240428025114_CreateCharacterTable")]
-    partial class CreateCharacterTable
+    [Migration("20240428030958_InitialCreate")]
+    partial class InitialCreate
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
