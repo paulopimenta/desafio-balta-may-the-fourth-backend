@@ -17,6 +17,7 @@ namespace May.The.Fourth.Backend.Data.Repositories
         {
             try
             {
+                ctx.Database.EnsureCreated();
                 IQueryable<PlanetEntity> planets = await Task.FromResult(ctx.Planets);
                 return planets.ToList();
             }

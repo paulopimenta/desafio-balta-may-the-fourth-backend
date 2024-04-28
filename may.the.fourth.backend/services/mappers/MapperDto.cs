@@ -1,4 +1,5 @@
 using May.The.Fourth.Backend.Data.Entities;
+using May.The.Fourth.Backend.Domain.Model;
 
 namespace May.The.Fourth.Backend.Services.Mappers
 {
@@ -59,6 +60,40 @@ namespace May.The.Fourth.Backend.Services.Mappers
                     planets.Add(MapToPlanetDto(planetEntity));
             }
             return planets;
+        }
+
+        public static CharacterDto MapToCharacterDto(Character character)
+        {
+            if (character == null)
+                return new CharacterDto();
+            return new CharacterDto
+            {
+                Id = character.Id,
+                Name = character.Name,
+                Height = character.Height,
+                Weight = character.Weight,
+                HairColor = character.HairColor,
+                SkinColor = character.SkinColor,
+                EyeColor = character.EyeColor,
+                BirthYear = character.BirthYear,
+                Gender = character.Gender,
+                PlanetDto = new PlanetDto
+                {
+                    Id = character.Planet.Id,
+                    Name = character.Planet.Name
+                }
+            };
+        }
+
+        public static IList<CharacterDto> MapToCharacterDto(IList<Character> characterEntities)
+        {
+            IList<CharacterDto> characters = new List<CharacterDto>();
+            if (characterEntities.Any())
+            {
+                foreach (var characterEntity in characterEntities)
+                    characters.Add(MapToCharacterDto(characterEntity));
+            }
+            return characters;
         }
     }
 }

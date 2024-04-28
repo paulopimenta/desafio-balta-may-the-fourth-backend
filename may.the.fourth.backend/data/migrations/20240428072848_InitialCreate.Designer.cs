@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace may.the.fourth.backend.data.migrations
 {
     [DbContext(typeof(StarWarsContext))]
-    [Migration("20240426050140_InitialCreate")]
+    [Migration("20240428072848_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -24,6 +24,185 @@ namespace may.the.fourth.backend.data.migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
+
+            modelBuilder.Entity("May.The.Fourth.Backend.Data.Entities.CharacterEntity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INT")
+                        .HasColumnName("CharacterID");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("BirthYear")
+                        .IsRequired()
+                        .HasColumnType("VARCHAR(50)")
+                        .HasColumnName("BirthYear");
+
+                    b.Property<string>("EyeColor")
+                        .IsRequired()
+                        .HasColumnType("VARCHAR(50)")
+                        .HasColumnName("EyeColor");
+
+                    b.Property<string>("Gender")
+                        .IsRequired()
+                        .HasColumnType("VARCHAR(20)")
+                        .HasColumnName("Gender");
+
+                    b.Property<string>("HairColor")
+                        .IsRequired()
+                        .HasColumnType("VARCHAR(50)")
+                        .HasColumnName("HairColor");
+
+                    b.Property<string>("Height")
+                        .IsRequired()
+                        .HasColumnType("VARCHAR(10)")
+                        .HasColumnName("Height");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("VARCHAR(150)")
+                        .HasColumnName("Name");
+
+                    b.Property<int?>("PlanetId")
+                        .HasColumnType("INT")
+                        .HasColumnName("PlanetID");
+
+                    b.Property<string>("SkinColor")
+                        .IsRequired()
+                        .HasColumnType("VARCHAR(50)")
+                        .HasColumnName("SkinColor");
+
+                    b.Property<string>("Weight")
+                        .IsRequired()
+                        .HasColumnType("VARCHAR(10)")
+                        .HasColumnName("Weight");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PlanetId");
+
+                    b.ToTable("Characters");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            BirthYear = "19BBY",
+                            EyeColor = "blue",
+                            Gender = "male",
+                            HairColor = "blond",
+                            Height = "172",
+                            Name = "Luke Skywalker",
+                            PlanetId = 1,
+                            SkinColor = "fair",
+                            Weight = "77"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            BirthYear = "112BBY",
+                            EyeColor = "yellow",
+                            Gender = "n/a",
+                            HairColor = "n/a",
+                            Height = "167",
+                            Name = "C-3PO",
+                            PlanetId = 1,
+                            SkinColor = "gold",
+                            Weight = "75"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            BirthYear = "33BBY",
+                            EyeColor = "red",
+                            Gender = "n/a",
+                            HairColor = "n/a",
+                            Height = "96",
+                            Name = "R2-D2",
+                            PlanetId = 8,
+                            SkinColor = "white, blue",
+                            Weight = "32"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            BirthYear = "41.9BBY",
+                            EyeColor = "yellow",
+                            Gender = "male",
+                            HairColor = "none",
+                            Height = "202",
+                            Name = "Darth Vader",
+                            PlanetId = 1,
+                            SkinColor = "white",
+                            Weight = "136"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            BirthYear = "19BBY",
+                            EyeColor = "brown",
+                            Gender = "female",
+                            HairColor = "brown",
+                            Height = "150",
+                            Name = "Leia Organa",
+                            PlanetId = 2,
+                            SkinColor = "light",
+                            Weight = "49"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            BirthYear = "52BBY",
+                            EyeColor = "blue",
+                            Gender = "male",
+                            HairColor = "brown, grey",
+                            Height = "178",
+                            Name = "Owen Lars",
+                            PlanetId = 1,
+                            SkinColor = "light",
+                            Weight = "120"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            BirthYear = "47BBY",
+                            EyeColor = "blue",
+                            Gender = "female",
+                            HairColor = "brown",
+                            Height = "165",
+                            Name = "Beru Whitesun lars",
+                            PlanetId = 1,
+                            SkinColor = "light",
+                            Weight = "75"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            BirthYear = "unknown",
+                            EyeColor = "red",
+                            Gender = "n/a",
+                            HairColor = "n/a",
+                            Height = "97",
+                            Name = "R5-D4",
+                            PlanetId = 1,
+                            SkinColor = "white, red",
+                            Weight = "32"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            BirthYear = "24BBY",
+                            EyeColor = "brown",
+                            Gender = "male",
+                            HairColor = "black",
+                            Height = "183",
+                            Name = "Biggs Darklighter",
+                            PlanetId = 1,
+                            SkinColor = "light",
+                            Weight = "84"
+                        });
+                });
 
             modelBuilder.Entity("May.The.Fourth.Backend.Data.Entities.FilmPlanetEntity", b =>
                 {
@@ -370,10 +549,19 @@ namespace may.the.fourth.backend.data.migrations
                         });
                 });
 
+            modelBuilder.Entity("May.The.Fourth.Backend.Data.Entities.CharacterEntity", b =>
+                {
+                    b.HasOne("May.The.Fourth.Backend.Data.Entities.PlanetEntity", "Planet")
+                        .WithMany("Characters")
+                        .HasForeignKey("PlanetId");
+
+                    b.Navigation("Planet");
+                });
+
             modelBuilder.Entity("May.The.Fourth.Backend.Data.Entities.FilmPlanetEntity", b =>
                 {
                     b.HasOne("May.The.Fourth.Backend.Data.Entities.PlanetEntity", "Planet")
-                        .WithMany("FilmPlanet")
+                        .WithMany("FilmsPlanets")
                         .HasForeignKey("PlanetId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -383,7 +571,9 @@ namespace may.the.fourth.backend.data.migrations
 
             modelBuilder.Entity("May.The.Fourth.Backend.Data.Entities.PlanetEntity", b =>
                 {
-                    b.Navigation("FilmPlanet");
+                    b.Navigation("Characters");
+
+                    b.Navigation("FilmsPlanets");
                 });
 #pragma warning restore 612, 618
         }

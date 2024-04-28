@@ -12,6 +12,7 @@ namespace May.The.Fourth.Backend.Data.Contexts
         public DbSet<FilmeEntity> Filmes { get; set; }
         public DbSet<PlanetEntity> Planets { get; set; }
         public DbSet<FilmPlanetEntity> FilmsPlanets { get; set; }
+        public DbSet<CharacterEntity> Characters { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -33,8 +34,7 @@ namespace May.The.Fourth.Backend.Data.Contexts
             modelBuilder.Entity<FilmeEntity>().HasData(filmes);
 
             // planets
-            var planets = new PlanetEntity[]
-            {
+            modelBuilder.Entity<PlanetEntity>().HasData(
                 new PlanetEntity { Id = 1, Name = "Tatooine", RotationPeriod = "23", OrbitalPeriod = "304", Diameter = "10465", Climate = "arid", Gravity = "1 standard", Terrain = "desert", SurfaceWater = "1", Population = "200000" },
                 new PlanetEntity { Id = 2, Name = "Alderaan", RotationPeriod = "24", OrbitalPeriod = "364", Diameter = "12500", Climate = "temperate", Gravity = "1 standard", Terrain = "grasslands, mountains", SurfaceWater = "40", Population = "2000000000" },
                 new PlanetEntity { Id = 3, Name = "Yavin IV", RotationPeriod = "24", OrbitalPeriod = "4818", Diameter = "10200", Climate = "temperate, tropical", Gravity = "1 standard", Terrain = "jungle, rainforests", SurfaceWater = "8", Population = "1000" },
@@ -45,8 +45,7 @@ namespace May.The.Fourth.Backend.Data.Contexts
                 new PlanetEntity { Id = 8, Name = "Naboo", RotationPeriod = "26", OrbitalPeriod = "312", Diameter = "12120", Climate = "temperate", Gravity = "1 standard", Terrain = "grassy hills, swamps, forests, mountains", SurfaceWater = "12", Population = "4500000000" },
                 new PlanetEntity { Id = 9, Name = "Coruscant", RotationPeriod = "24", OrbitalPeriod = "368", Diameter = "12240", Climate = "temperate", Gravity = "1 standard", Terrain = "cityscape, mountains", SurfaceWater = "unknown", Population = "1000000000000" },
                 new PlanetEntity { Id = 10, Name = "Kamino", RotationPeriod = "27", OrbitalPeriod = "463", Diameter = "19720", Climate = "temperate", Gravity = "1 standard", Terrain = "ocean", SurfaceWater = "100", Population = "1000000000" }
-            };
-            modelBuilder.Entity<PlanetEntity>().HasData(planets);
+            );
 
             // films-planets
             var filmsPlanets = new FilmPlanetEntity[]
@@ -63,6 +62,19 @@ namespace May.The.Fourth.Backend.Data.Contexts
                 new FilmPlanetEntity { PlanetId = 10 }
             };
             modelBuilder.Entity<FilmPlanetEntity>().HasData(filmsPlanets);
+
+            // characters
+            modelBuilder.Entity<CharacterEntity>().HasData(
+                new CharacterEntity { Id = 1, Name = "Luke Skywalker", Height = "172", Weight = "77", HairColor = "blond", SkinColor = "fair", EyeColor = "blue", BirthYear = "19BBY", Gender = "male", PlanetId = 1 },
+                new CharacterEntity { Id = 2, Name = "C-3PO", Height = "167", Weight = "75", HairColor = "n/a", SkinColor = "gold", EyeColor = "yellow", BirthYear = "112BBY", Gender = "n/a", PlanetId = 1 },
+                new CharacterEntity { Id = 3, Name = "R2-D2", Height = "96", Weight = "32", HairColor = "n/a", SkinColor = "white, blue", EyeColor = "red", BirthYear = "33BBY", Gender = "n/a", PlanetId = 8 },
+                new CharacterEntity { Id = 4, Name = "Darth Vader", Height = "202", Weight = "136", HairColor = "none", SkinColor = "white", EyeColor = "yellow", BirthYear = "41.9BBY", Gender = "male", PlanetId = 1 },
+                new CharacterEntity { Id = 5, Name = "Leia Organa", Height = "150", Weight = "49", HairColor = "brown", SkinColor = "light", EyeColor = "brown", BirthYear = "19BBY", Gender = "female", PlanetId = 2 },
+                new CharacterEntity { Id = 6, Name = "Owen Lars", Height = "178", Weight = "120", HairColor = "brown, grey", SkinColor = "light", EyeColor = "blue", BirthYear = "52BBY", Gender = "male", PlanetId = 1 },
+                new CharacterEntity { Id = 7, Name = "Beru Whitesun lars", Height = "165", Weight = "75", HairColor = "brown", SkinColor = "light", EyeColor = "blue", BirthYear = "47BBY", Gender = "female", PlanetId = 1 },
+                new CharacterEntity { Id = 8, Name = "R5-D4", Height = "97", Weight = "32", HairColor = "n/a", SkinColor = "white, red", EyeColor = "red", BirthYear = "unknown", Gender = "n/a", PlanetId = 1},
+                new CharacterEntity { Id = 9, Name = "Biggs Darklighter", Height = "183", Weight = "84", HairColor = "black", SkinColor = "light", EyeColor = "brown", BirthYear = "24BBY", Gender = "male", PlanetId = 1 }
+            );
         }
     }
 }

@@ -54,6 +54,32 @@ namespace may.the.fourth.backend.data.migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Characters",
+                columns: table => new
+                {
+                    CharacterID = table.Column<int>(type: "INT", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Name = table.Column<string>(type: "VARCHAR(150)", nullable: false),
+                    Height = table.Column<string>(type: "VARCHAR(10)", nullable: false),
+                    Weight = table.Column<string>(type: "VARCHAR(10)", nullable: false),
+                    HairColor = table.Column<string>(type: "VARCHAR(50)", nullable: false),
+                    SkinColor = table.Column<string>(type: "VARCHAR(50)", nullable: false),
+                    EyeColor = table.Column<string>(type: "VARCHAR(50)", nullable: false),
+                    BirthYear = table.Column<string>(type: "VARCHAR(50)", nullable: false),
+                    Gender = table.Column<string>(type: "VARCHAR(20)", nullable: false),
+                    PlanetID = table.Column<int>(type: "INT", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Characters", x => x.CharacterID);
+                    table.ForeignKey(
+                        name: "FK_Characters_Planets_PlanetID",
+                        column: x => x.PlanetID,
+                        principalTable: "Planets",
+                        principalColumn: "PlanetID");
+                });
+
+            migrationBuilder.CreateTable(
                 name: "FilmsPlanets",
                 columns: table => new
                 {
@@ -106,6 +132,22 @@ namespace may.the.fourth.backend.data.migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "Characters",
+                columns: new[] { "CharacterID", "BirthYear", "EyeColor", "Gender", "HairColor", "Height", "Name", "PlanetID", "SkinColor", "Weight" },
+                values: new object[,]
+                {
+                    { 1, "19BBY", "blue", "male", "blond", "172", "Luke Skywalker", 1, "fair", "77" },
+                    { 2, "112BBY", "yellow", "n/a", "n/a", "167", "C-3PO", 1, "gold", "75" },
+                    { 3, "33BBY", "red", "n/a", "n/a", "96", "R2-D2", 8, "white, blue", "32" },
+                    { 4, "41.9BBY", "yellow", "male", "none", "202", "Darth Vader", 1, "white", "136" },
+                    { 5, "19BBY", "brown", "female", "brown", "150", "Leia Organa", 2, "light", "49" },
+                    { 6, "52BBY", "blue", "male", "brown, grey", "178", "Owen Lars", 1, "light", "120" },
+                    { 7, "47BBY", "blue", "female", "brown", "165", "Beru Whitesun lars", 1, "light", "75" },
+                    { 8, "unknown", "red", "n/a", "n/a", "97", "R5-D4", 1, "white, red", "32" },
+                    { 9, "24BBY", "brown", "male", "black", "183", "Biggs Darklighter", 1, "light", "84" }
+                });
+
+            migrationBuilder.InsertData(
                 table: "FilmsPlanets",
                 column: "PlanetID",
                 values: new object[]
@@ -121,11 +163,19 @@ namespace may.the.fourth.backend.data.migrations
                     9,
                     10
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Characters_PlanetID",
+                table: "Characters",
+                column: "PlanetID");
         }
 
         /// <inheritdoc />
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "Characters");
+
             migrationBuilder.DropTable(
                 name: "Filmes");
 

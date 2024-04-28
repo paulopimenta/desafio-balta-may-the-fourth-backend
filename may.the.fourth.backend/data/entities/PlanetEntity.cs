@@ -38,7 +38,9 @@ namespace May.The.Fourth.Backend.Data.Entities
 
         [Column("Population", TypeName = "VARCHAR(15)")]
         public string Population { get; set; } = String.Empty;
-                
-        public virtual ICollection<FilmPlanetEntity>? FilmPlanet { get; set; }
+
+        // Navigation properties                
+        public virtual ICollection<FilmPlanetEntity>? FilmsPlanets { get; set; }
+        public virtual ICollection<CharacterEntity>? Characters { get; set; }
     }
 }
