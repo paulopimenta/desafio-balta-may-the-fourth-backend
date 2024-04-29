@@ -4,6 +4,7 @@ namespace May.The.Fourth.Backend.Services.Interfaces
 {
     public interface ICharacterService
     {
-        Task<CharacterListResponse> GetCharacters();
+        Task<CharacterListResponse> GetCharactersAsync();
+        Task<CharacterGetResponse> GetCharacterByIdAsync(int id);
     }
 }

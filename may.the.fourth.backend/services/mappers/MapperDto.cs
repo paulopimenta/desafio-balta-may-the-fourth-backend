@@ -79,7 +79,7 @@ namespace May.The.Fourth.Backend.Services.Mappers
                 Gender = character.Gender,
                 PlanetDto = new PlanetDto
                 {
-                    Id = character.Planet.Id,
+                    Id = character.Planet!.Id,
                     Name = character.Planet.Name
                 }
             };

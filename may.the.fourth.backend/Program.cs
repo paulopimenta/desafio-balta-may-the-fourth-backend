@@ -60,7 +60,8 @@ var endpoints = app.MapGroup("/star-wars");
 endpoints.MapGet("/", () => "Hello Star Wars World!");
 endpoints.MapGet("/filmes", GetFilmes);
 endpoints.MapGet("/planets", GetPlanets);
-endpoints.MapGet("/characters", GetCharacters);
+endpoints.MapGet("/characters", GetCharactersAsync);
+endpoints.MapGet("/characters/{id}", GetCharacterByIdAsync);
 
 app.UseSwaggerUI(options =>
 {
@@ -87,9 +88,17 @@ static async Task<IResult> GetPlanets(IPlanetService planetService)
         : TypedResults.BadRequest(result);
 }
 
-static async Task<IResult> GetCharacters(ICharacterService characterService)
+static async Task<IResult> GetCharactersAsync(ICharacterService characterService)
 {
-    var result = await characterService.GetCharacters();
+    var result = await characterService.GetCharactersAsync();
+    return result.Success 
+        ? TypedResults.Ok(result) 
+        : TypedResults.BadRequest(result);
+}
+
+static async Task<IResult> GetCharacterByIdAsync(int id, ICharacterService characterService)
+{
+    var result = await characterService.GetCharacterByIdAsync(id);
     return result.Success 
         ? TypedResults.Ok(result) 
         : TypedResults.BadRequest(result);

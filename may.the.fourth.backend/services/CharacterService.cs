@@ -14,12 +14,12 @@ namespace May.The.Fourth.Backend.Services
             this.characterRepository = characterRepository;
         }
 
-        public async Task<CharacterListResponse> GetCharacters()
+        public async Task<CharacterListResponse> GetCharactersAsync()
         {
             try
             {
                 CharacterListResponse characterListResponse = new CharacterListResponse();
-                var characters = await characterRepository.GetCharacters();
+                var characters = await characterRepository.GetCharactersAsync();
                 if (characters.Any())
                 {
                     characterListResponse.Success = true;
@@ -39,6 +39,40 @@ namespace May.The.Fourth.Backend.Services
             catch(Exception)
             {
                 return new CharacterListResponse
+                {
+                    Success = false,
+                    Message = "Internal server error",
+                    StatusCode = 500,
+                    CharacterDto = null
+                };
+            }
+        }
+
+        public async Task<CharacterGetResponse> GetCharacterByIdAsync(int id)
+        {
+            try
+            {
+                CharacterGetResponse characterGetResponse = new CharacterGetResponse();
+                var character = await characterRepository.GetCharacterByIdAsync(id);
+                if (character != null)
+                {
+                    characterGetResponse.Success = true;
+                    characterGetResponse.Message = "SUCCESS";
+                    characterGetResponse.StatusCode = 200;
+                    characterGetResponse.CharacterDto = MapperDto.MapToCharacterDto(character);
+                }
+                else
+                {
+                    characterGetResponse.Success = false;
+                    characterGetResponse.Message = "FAILED";
+                    characterGetResponse.StatusCode = 500;
+                    characterGetResponse.CharacterDto = null;
+                }
+                return characterGetResponse;
+            }
+            catch(Exception)
+            {
+                return new CharacterGetResponse
                 {
                     Success = false,
                     Message = "Internal server error",
