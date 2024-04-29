@@ -36,12 +36,12 @@ builder.Services.AddSwaggerGen(options =>
     options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
 });
 builder.Services.AddScoped<IFilmeRepository, FilmeRepository>();
-builder.Services.AddScoped<IPlanetRepository, PlanetRepository>();
 builder.Services.AddScoped<ICharacterRepository, CharacterRepository>();
+builder.Services.AddScoped<IPlanetRepository, PlanetRepository>();
 
 builder.Services.AddScoped<IFilmeService, FilmeService>();
-builder.Services.AddScoped<IPlanetService, PlanetService>();
 builder.Services.AddScoped<ICharacterService, CharacterService>();
+builder.Services.AddScoped<IPlanetService, PlanetService>();
 
 builder.Services.AddEntityFrameworkNpgsql();
 var connection = builder.Configuration.GetConnectionString("StarWarsConnection");
@@ -59,9 +59,10 @@ app.UseSwagger();
 var endpoints = app.MapGroup("/star-wars");
 endpoints.MapGet("/", () => "Hello Star Wars World!");
 endpoints.MapGet("/filmes", GetFilmes);
-endpoints.MapGet("/planets", GetPlanets);
 endpoints.MapGet("/characters", GetCharactersAsync);
-endpoints.MapGet("/characters/{id}", GetCharacterByIdAsync);
+endpoints.MapGet("/character/{id}", GetCharacterByIdAsync);
+endpoints.MapGet("/planets", GetPlanetsAsync);
+endpoints.MapGet("/planet/{id}", GetPlanetByIdAsync);
 
 app.UseSwaggerUI(options =>
 {
@@ -80,14 +81,6 @@ static async Task<IResult> GetFilmes(IFilmeService filmeService)
         : TypedResults.BadRequest(result);
 }
 
-static async Task<IResult> GetPlanets(IPlanetService planetService)
-{
-    var result = await planetService.GetPlanets();
-    return result.Success 
-        ? TypedResults.Ok(result) 
-        : TypedResults.BadRequest(result);
-}
-
 static async Task<IResult> GetCharactersAsync(ICharacterService characterService)
 {
     var result = await characterService.GetCharactersAsync();
@@ -99,6 +92,22 @@ static async Task<IResult> GetCharactersAsync(ICharacterService characterService
 static async Task<IResult> GetCharacterByIdAsync(int id, ICharacterService characterService)
 {
     var result = await characterService.GetCharacterByIdAsync(id);
+    return result.Success 
+        ? TypedResults.Ok(result) 
+        : TypedResults.BadRequest(result);
+}
+
+static async Task<IResult> GetPlanetsAsync(IPlanetService planetService)
+{
+    var result = await planetService.GetPlanetsAsync();
+    return result.Success 
+        ? TypedResults.Ok(result) 
+        : TypedResults.BadRequest(result);
+}
+
+static async Task<IResult> GetPlanetByIdAsync(int id, IPlanetService planetService)
+{
+    var result = await planetService.GetPlanetByIdAsync(id);
     return result.Success 
         ? TypedResults.Ok(result) 
         : TypedResults.BadRequest(result);

@@ -32,7 +32,7 @@ namespace May.The.Fourth.Backend.Services.Mappers
             return filmes;
         }
 
-        public static PlanetDto MapToPlanetDto(PlanetEntity planet)
+        public static PlanetDto MapToPlanetDto(Planet planet)
         {
             if (planet == null)
                 return new PlanetDto();
@@ -47,19 +47,20 @@ namespace May.The.Fourth.Backend.Services.Mappers
                 Gravity = planet.Gravity,
                 Terrain = planet.Terrain,
                 SurfaceWater = planet.SurfaceWater,
-                Population = planet.Population
+                Population = planet.Population,
+                CharactersDto = planet.Characters.Select(c => new CharacterDto { Id = c.Id, Name = c.Name }).ToList()
             };
         }
 
-        public static IList<PlanetDto> MapToPlanetDto(IList<PlanetEntity> planetEntities)
+        public static IList<PlanetDto> MapToPlanetDto(IList<Planet> planets)
         {
-            IList<PlanetDto> planets = new List<PlanetDto>();
-            if (planetEntities.Any())
+            IList<PlanetDto> planetsDto = new List<PlanetDto>();
+            if (planets.Any())
             {
-                foreach (var planetEntity in planetEntities)
-                    planets.Add(MapToPlanetDto(planetEntity));
+                foreach (var planet in planets)
+                    planetsDto.Add(MapToPlanetDto(planet));
             }
-            return planets;
+            return planetsDto;
         }
 
         public static CharacterDto MapToCharacterDto(Character character)
@@ -85,15 +86,15 @@ namespace May.The.Fourth.Backend.Services.Mappers
             };
         }
 
-        public static IList<CharacterDto> MapToCharacterDto(IList<Character> characterEntities)
+        public static IList<CharacterDto> MapToCharacterDto(IList<Character> characters)
         {
-            IList<CharacterDto> characters = new List<CharacterDto>();
-            if (characterEntities.Any())
+            IList<CharacterDto> charactersDto = new List<CharacterDto>();
+            if (characters.Any())
             {
-                foreach (var characterEntity in characterEntities)
-                    characters.Add(MapToCharacterDto(characterEntity));
+                foreach (var character in characters)
+                    charactersDto.Add(MapToCharacterDto(character));
             }
-            return characters;
+            return charactersDto;
         }
     }
 }

@@ -4,6 +4,7 @@ namespace May.The.Fourth.Backend.Services.Interfaces
 {
     public interface IPlanetService
     {
-        Task<PlanetListResponse> GetPlanets();
+        Task<PlanetListResponse> GetPlanetsAsync();
+        Task<PlanetGetResponse> GetPlanetByIdAsync(int id);
     }
 }

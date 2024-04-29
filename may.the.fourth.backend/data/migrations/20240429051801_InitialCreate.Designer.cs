@@ -12,7 +12,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace may.the.fourth.backend.data.migrations
 {
     [DbContext(typeof(StarWarsContext))]
-    [Migration("20240428072848_InitialCreate")]
+    [Migration("20240429051801_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />

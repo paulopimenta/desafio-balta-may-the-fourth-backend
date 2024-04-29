@@ -1,8 +1,9 @@
+using Microsoft.EntityFrameworkCore;
+
 using May.The.Fourth.Backend.Data.Contexts;
 using May.The.Fourth.Backend.Data.Entities;
 using May.The.Fourth.Backend.Data.Interfaces;
 using May.The.Fourth.Backend.Domain.Model;
-using Microsoft.EntityFrameworkCore;
 
 namespace May.The.Fourth.Backend.Data.Repositories
 {
@@ -65,8 +66,6 @@ namespace May.The.Fourth.Backend.Data.Repositories
                         Planet = new PlanetEntity { Id = s.Planet!.Id, Name = s.Planet.Name }
                     })
                     .FirstOrDefaultAsync();
-                if (character == null)
-                    return null;
                 return character;
             }
             catch(Exception e)

@@ -14,12 +14,12 @@ namespace May.The.Fourth.Backend.Services
             this.planetRepository = planetRepository;
         }
 
-        public async Task<PlanetListResponse> GetPlanets()
+        public async Task<PlanetListResponse> GetPlanetsAsync()
         {
             try
             {
                 PlanetListResponse planetListResponse = new PlanetListResponse();
-                var planets = await planetRepository.GetPlanets();
+                var planets = await planetRepository.GetPlanetsAsync();
                 if (planets.Any())
                 {
                     planetListResponse.Success = true;
@@ -39,6 +39,40 @@ namespace May.The.Fourth.Backend.Services
             catch(Exception)
             {
                 return new PlanetListResponse
+                {
+                    Success = false,
+                    Message = "Internal server error",
+                    StatusCode = 500,
+                    PlanetDto = null
+                };
+            }
+        }
+
+        public async Task<PlanetGetResponse> GetPlanetByIdAsync(int id)
+        {
+            try
+            {
+                PlanetGetResponse planetGetResponse = new PlanetGetResponse();
+                var planet = await planetRepository.GetPlanetByIdAsync(id);
+                if (planet != null)
+                {
+                    planetGetResponse.Success = true;
+                    planetGetResponse.Message = "SUCCESS";
+                    planetGetResponse.StatusCode = 200;
+                    planetGetResponse.PlanetDto = MapperDto.MapToPlanetDto(planet);
+                }
+                else
+                {
+                    planetGetResponse.Success = false;
+                    planetGetResponse.Message = "FAILED";
+                    planetGetResponse.StatusCode = 500;
+                    planetGetResponse.PlanetDto = null;
+                }
+                return planetGetResponse;
+            }
+            catch(Exception)
+            {
+                return new PlanetGetResponse
                 {
                     Success = false,
                     Message = "Internal server error",

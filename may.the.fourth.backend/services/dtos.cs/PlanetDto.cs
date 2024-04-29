@@ -30,5 +30,9 @@ namespace May.The.Fourth.Backend.Services.Mappers
 
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public string? Population { get; set; }
+
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        [JsonPropertyName("characters")]
+        public IList<CharacterDto>? CharactersDto { get; set; }
     }
 }
