@@ -73,6 +73,7 @@ endpoints.MapGet("/vehicles", GetVehiclesAsync);
 endpoints.MapGet("/vehicle/{id}", GetVehicleByIdAsync);
 
 endpoints.MapGet("/starships", GetStarshipsAsync);
+endpoints.MapGet("/starship/{id}", GetStarshipByIdAsync);
 
 app.UseSwaggerUI(options =>
 {
@@ -142,6 +143,14 @@ static async Task<IResult> GetVehicleByIdAsync(int id, IVehicleService vehicleSe
 static async Task<IResult> GetStarshipsAsync(IStarshipService starshipService)
 {
     var result = await starshipService.GetStarshipsAsync();
+    return result.Success 
+        ? TypedResults.Ok(result) 
+        : TypedResults.BadRequest(result);
+}
+
+static async Task<IResult> GetStarshipByIdAsync(int id, IStarshipService starshipService)
+{
+    var result = await starshipService.GetStarshipByIdAsync(id);
     return result.Success 
         ? TypedResults.Ok(result) 
         : TypedResults.BadRequest(result);

@@ -47,5 +47,39 @@ namespace May.The.Fourth.Backend.Services
                 };
             }
         }
+
+        public async Task<StarshipGetResponse> GetStarshipByIdAsync(int id)
+        {
+            try
+            {
+                StarshipGetResponse starshipGetResponse = new StarshipGetResponse();
+                var starship = await starshipRepository.GetStarshipByIdAsync(id);
+                if (starship != null)
+                {
+                    starshipGetResponse.Success = true;
+                    starshipGetResponse.Message = "SUCCESS";
+                    starshipGetResponse.StatusCode = 200;
+                    starshipGetResponse.StarshipDto = MapperDto.MapToStarshipDto(starship);
+                }
+                else
+                {
+                    starshipGetResponse.Success = false;
+                    starshipGetResponse.Message = "FAILED";
+                    starshipGetResponse.StatusCode = 500;
+                    starshipGetResponse.StarshipDto = null;
+                }
+                return starshipGetResponse;
+            }
+            catch(Exception)
+            {
+                return new StarshipGetResponse
+                {
+                    Success = false,
+                    Message = "Internal server error",
+                    StatusCode = 500,
+                    StarshipDto = null
+                };
+            }
+        }
     }  
 }
