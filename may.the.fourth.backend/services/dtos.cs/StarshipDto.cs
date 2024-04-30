@@ -2,7 +2,7 @@ using System.Text.Json.Serialization;
 
 namespace May.The.Fourth.Backend.Services.Mappers
 {
-    public class VehicleDto
+    public class StarshipDto
     {
         public int Id { get; set; }
         public string Name { get; set; } = string.Empty;
@@ -33,8 +33,14 @@ namespace May.The.Fourth.Backend.Services.Mappers
 
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public string? Consumables { get; set; }
+        
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public string? HyperdriveRating { get; set; }
 
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        public string? VehicleClass { get; set; }
+        public string? MGLT { get; set; }
+
+        [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
+        public string? StarshipClass { get; set; }
     }
 }

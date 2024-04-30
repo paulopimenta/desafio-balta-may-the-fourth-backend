@@ -39,11 +39,13 @@ builder.Services.AddScoped<IFilmeRepository, FilmeRepository>();
 builder.Services.AddScoped<ICharacterRepository, CharacterRepository>();
 builder.Services.AddScoped<IPlanetRepository, PlanetRepository>();
 builder.Services.AddScoped<IVehicleRepository, VehicleRepository>();
+builder.Services.AddScoped<IStarshipRepository, StarshipRepository>();
 
 builder.Services.AddScoped<IFilmeService, FilmeService>();
 builder.Services.AddScoped<ICharacterService, CharacterService>();
 builder.Services.AddScoped<IPlanetService, PlanetService>();
 builder.Services.AddScoped<IVehicleService, VehicleService>();
+builder.Services.AddScoped<IStarshipService, StarshipService>();
 
 builder.Services.AddEntityFrameworkNpgsql();
 var connection = builder.Configuration.GetConnectionString("StarWarsConnection");
@@ -63,10 +65,14 @@ endpoints.MapGet("/", () => "Hello Star Wars World!");
 endpoints.MapGet("/filmes", GetFilmes);
 endpoints.MapGet("/characters", GetCharactersAsync);
 endpoints.MapGet("/character/{id}", GetCharacterByIdAsync);
+
 endpoints.MapGet("/planets", GetPlanetsAsync);
 endpoints.MapGet("/planet/{id}", GetPlanetByIdAsync);
+
 endpoints.MapGet("/vehicles", GetVehiclesAsync);
 endpoints.MapGet("/vehicle/{id}", GetVehicleByIdAsync);
+
+endpoints.MapGet("/starships", GetStarshipsAsync);
 
 app.UseSwaggerUI(options =>
 {
@@ -128,6 +134,14 @@ static async Task<IResult> GetVehiclesAsync(IVehicleService vehicleService)
 static async Task<IResult> GetVehicleByIdAsync(int id, IVehicleService vehicleService)
 {
     var result = await vehicleService.GetVehicleByIdAsync(id);
+    return result.Success 
+        ? TypedResults.Ok(result) 
+        : TypedResults.BadRequest(result);
+}
+
+static async Task<IResult> GetStarshipsAsync(IStarshipService starshipService)
+{
+    var result = await starshipService.GetStarshipsAsync();
     return result.Success 
         ? TypedResults.Ok(result) 
         : TypedResults.BadRequest(result);

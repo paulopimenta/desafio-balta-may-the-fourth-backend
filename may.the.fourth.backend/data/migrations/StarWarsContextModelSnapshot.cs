@@ -546,6 +546,257 @@ namespace may.the.fourth.backend.data.migrations
                         });
                 });
 
+            modelBuilder.Entity("May.The.Fourth.Backend.Data.Entities.StarshipEntity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INT")
+                        .HasColumnName("StarshipID");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("CargoCapacity")
+                        .IsRequired()
+                        .HasColumnType("VARCHAR(50)")
+                        .HasColumnName("CargoCapacity");
+
+                    b.Property<string>("Consumables")
+                        .IsRequired()
+                        .HasColumnType("VARCHAR(50)")
+                        .HasColumnName("Consumables");
+
+                    b.Property<string>("CostInCredits")
+                        .IsRequired()
+                        .HasColumnType("VARCHAR(20)")
+                        .HasColumnName("CostInCredits");
+
+                    b.Property<string>("Crew")
+                        .IsRequired()
+                        .HasColumnType("VARCHAR(20)")
+                        .HasColumnName("Crew");
+
+                    b.Property<string>("HyperdriveRating")
+                        .IsRequired()
+                        .HasColumnType("VARCHAR(20)")
+                        .HasColumnName("HyperdriveRating");
+
+                    b.Property<string>("Length")
+                        .IsRequired()
+                        .HasColumnType("VARCHAR(50)")
+                        .HasColumnName("Length");
+
+                    b.Property<string>("MGLT")
+                        .IsRequired()
+                        .HasColumnType("VARCHAR(20)")
+                        .HasColumnName("MGLT");
+
+                    b.Property<string>("Manufacturer")
+                        .IsRequired()
+                        .HasColumnType("VARCHAR(150)")
+                        .HasColumnName("Manufacturer");
+
+                    b.Property<string>("MaxAtmospheringSpeed")
+                        .IsRequired()
+                        .HasColumnType("VARCHAR(50)")
+                        .HasColumnName("MaxAtmospheringSpeed");
+
+                    b.Property<string>("Model")
+                        .IsRequired()
+                        .HasColumnType("VARCHAR(150)")
+                        .HasColumnName("Model");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("VARCHAR(150)")
+                        .HasColumnName("Name");
+
+                    b.Property<string>("Passengers")
+                        .IsRequired()
+                        .HasColumnType("VARCHAR(20)")
+                        .HasColumnName("Passengers");
+
+                    b.Property<string>("StarshipClass")
+                        .IsRequired()
+                        .HasColumnType("VARCHAR(50)")
+                        .HasColumnName("StarshipClass");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Starship");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CargoCapacity = "3000000",
+                            Consumables = "1 year",
+                            CostInCredits = "3500000",
+                            Crew = "30-165",
+                            HyperdriveRating = "2.0",
+                            Length = "150",
+                            MGLT = "60",
+                            Manufacturer = "Corellian Engineering Corporation",
+                            MaxAtmospheringSpeed = "950",
+                            Model = "CR90 corvette",
+                            Name = "CR90 corvette",
+                            Passengers = "600",
+                            StarshipClass = "corvette"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CargoCapacity = "36000000",
+                            Consumables = "2 years",
+                            CostInCredits = "150000000",
+                            Crew = "47,060",
+                            HyperdriveRating = "2.0",
+                            Length = "1,600",
+                            MGLT = "60",
+                            Manufacturer = "Kuat Drive Yards",
+                            MaxAtmospheringSpeed = "975",
+                            Model = "Imperial I-class Star Destroyer",
+                            Name = "Star Destroyer",
+                            Passengers = "n/a",
+                            StarshipClass = "Star Destroyer"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CargoCapacity = "180000",
+                            Consumables = "1 month",
+                            CostInCredits = "240000",
+                            Crew = "5",
+                            HyperdriveRating = "1.0",
+                            Length = "38",
+                            MGLT = "70",
+                            Manufacturer = "Sienar Fleet Systems, Cyngus Spaceworks",
+                            MaxAtmospheringSpeed = "1000",
+                            Model = "Sentinel-class landing craft",
+                            Name = "Sentinel-class landing craft",
+                            Passengers = "75",
+                            StarshipClass = "landing craft"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CargoCapacity = "1000000000000",
+                            Consumables = "3 years",
+                            CostInCredits = "1000000000000",
+                            Crew = "342,953",
+                            HyperdriveRating = "4.0",
+                            Length = "120000",
+                            MGLT = "10",
+                            Manufacturer = "Imperial Department of Military Research, Sienar Fleet Systems",
+                            MaxAtmospheringSpeed = "n/a",
+                            Model = "DS-1 Orbital Battle Station",
+                            Name = "Death Star",
+                            Passengers = "843,342",
+                            StarshipClass = "Deep Space Mobile Battlestation"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CargoCapacity = "100000",
+                            Consumables = "2 months",
+                            CostInCredits = "100000",
+                            Crew = "4",
+                            HyperdriveRating = "0.5",
+                            Length = "34.37",
+                            MGLT = "75",
+                            Manufacturer = "Corellian Engineering Corporation",
+                            MaxAtmospheringSpeed = "1050",
+                            Model = "YT-1300 light freighter",
+                            Name = "Millennium Falcon",
+                            Passengers = "6",
+                            StarshipClass = "Light freighter"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            CargoCapacity = "110",
+                            Consumables = "1 week",
+                            CostInCredits = "134999",
+                            Crew = "2",
+                            HyperdriveRating = "1.0",
+                            Length = "14",
+                            MGLT = "80",
+                            Manufacturer = "Koensayr Manufacturing",
+                            MaxAtmospheringSpeed = "1000km",
+                            Model = "BTL Y-wing",
+                            Name = "Y-wing",
+                            Passengers = "0",
+                            StarshipClass = "assault starfighter"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            CargoCapacity = "110",
+                            Consumables = "1 week",
+                            CostInCredits = "149999",
+                            Crew = "1",
+                            HyperdriveRating = "1.0",
+                            Length = "12.5",
+                            MGLT = "100",
+                            Manufacturer = "Incom Corporation",
+                            MaxAtmospheringSpeed = "1050",
+                            Model = "T-65 X-wing",
+                            Name = "X-wing",
+                            Passengers = "0",
+                            StarshipClass = "Starfighter"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            CargoCapacity = "150",
+                            Consumables = "5 days",
+                            CostInCredits = "unknown",
+                            Crew = "1",
+                            HyperdriveRating = "1.0",
+                            Length = "9.2",
+                            MGLT = "105",
+                            Manufacturer = "Sienar Fleet Systems",
+                            MaxAtmospheringSpeed = "1200",
+                            Model = "Twin Ion Engine Advanced x1",
+                            Name = "TIE Advanced x1",
+                            Passengers = "0",
+                            StarshipClass = "Starfighter"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            CargoCapacity = "250000000",
+                            Consumables = "6 years",
+                            CostInCredits = "1143350000",
+                            Crew = "279,144",
+                            HyperdriveRating = "2.0",
+                            Length = "19000",
+                            MGLT = "40",
+                            Manufacturer = "Kuat Drive Yards, Fondor Shipyards",
+                            MaxAtmospheringSpeed = "n/a",
+                            Model = "Executor-class star dreadnought",
+                            Name = "Executor",
+                            Passengers = "38000",
+                            StarshipClass = "Star dreadnought"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            CargoCapacity = "19000000",
+                            Consumables = "6 months",
+                            CostInCredits = "unknown",
+                            Crew = "6",
+                            HyperdriveRating = "4.0",
+                            Length = "90",
+                            MGLT = "20",
+                            Manufacturer = "Gallofree Yards, Inc.",
+                            MaxAtmospheringSpeed = "650",
+                            Model = "GR-75 medium transport",
+                            Name = "Rebel transport",
+                            Passengers = "90",
+                            StarshipClass = "Medium transport"
+                        });
+                });
+
             modelBuilder.Entity("May.The.Fourth.Backend.Data.Entities.VehicleEntity", b =>
                 {
                     b.Property<int>("Id")
@@ -605,10 +856,10 @@ namespace may.the.fourth.backend.data.migrations
                         .HasColumnType("VARCHAR(10)")
                         .HasColumnName("Passengers");
 
-                    b.Property<string>("Vehicle_Class")
+                    b.Property<string>("VehicleClass")
                         .IsRequired()
                         .HasColumnType("VARCHAR(50)")
-                        .HasColumnName("Vehicle_Class");
+                        .HasColumnName("VehicleClass");
 
                     b.HasKey("Id");
 
@@ -628,7 +879,7 @@ namespace may.the.fourth.backend.data.migrations
                             Model = "Digger Crawler",
                             Name = "Sand Crawler",
                             Passengers = "30",
-                            Vehicle_Class = "wheeled"
+                            VehicleClass = "wheeled"
                         },
                         new
                         {
@@ -643,7 +894,7 @@ namespace may.the.fourth.backend.data.migrations
                             Model = "T-16 skyhopper",
                             Name = "T-16 skyhopper",
                             Passengers = "1",
-                            Vehicle_Class = "repulsorcraft"
+                            VehicleClass = "repulsorcraft"
                         },
                         new
                         {
@@ -658,7 +909,7 @@ namespace may.the.fourth.backend.data.migrations
                             Model = "X-34 landspeeder",
                             Name = "X-34 landspeeder",
                             Passengers = "1",
-                            Vehicle_Class = "repulsorcraft"
+                            VehicleClass = "repulsorcraft"
                         },
                         new
                         {
@@ -673,7 +924,7 @@ namespace may.the.fourth.backend.data.migrations
                             Model = "Twin Ion Engine/Ln Starfighter",
                             Name = "TIE/LN starfighter",
                             Passengers = "0",
-                            Vehicle_Class = "starfighter"
+                            VehicleClass = "starfighter"
                         },
                         new
                         {
@@ -688,7 +939,7 @@ namespace may.the.fourth.backend.data.migrations
                             Model = "t-47 airspeeder",
                             Name = "Snowspeeder",
                             Passengers = "0",
-                            Vehicle_Class = "airspeeder"
+                            VehicleClass = "airspeeder"
                         },
                         new
                         {
@@ -703,7 +954,7 @@ namespace may.the.fourth.backend.data.migrations
                             Model = "TIE/sa bomber",
                             Name = "TIE bomber",
                             Passengers = "0",
-                            Vehicle_Class = "space/planetary bomber"
+                            VehicleClass = "space/planetary bomber"
                         },
                         new
                         {
@@ -718,7 +969,7 @@ namespace may.the.fourth.backend.data.migrations
                             Model = "All Terrain Armored Transport",
                             Name = "AT-AT",
                             Passengers = "40",
-                            Vehicle_Class = "assault walker"
+                            VehicleClass = "assault walker"
                         },
                         new
                         {
@@ -733,7 +984,7 @@ namespace may.the.fourth.backend.data.migrations
                             Model = "All Terrain Scout Transport",
                             Name = "AT-ST",
                             Passengers = "0",
-                            Vehicle_Class = "walker"
+                            VehicleClass = "walker"
                         },
                         new
                         {
@@ -748,7 +999,7 @@ namespace may.the.fourth.backend.data.migrations
                             Model = "Storm IV Twin-Pod",
                             Name = "Storm IV Twin-Pod cloud car",
                             Passengers = "0",
-                            Vehicle_Class = "repulsorcraft"
+                            VehicleClass = "repulsorcraft"
                         },
                         new
                         {
@@ -763,7 +1014,7 @@ namespace may.the.fourth.backend.data.migrations
                             Model = "Modified Luxury Sail Barge",
                             Name = "Sail barge",
                             Passengers = "500",
-                            Vehicle_Class = "sail barge"
+                            VehicleClass = "sail barge"
                         });
                 });
 

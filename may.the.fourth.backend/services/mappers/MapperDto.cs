@@ -54,13 +54,13 @@ namespace May.The.Fourth.Backend.Services.Mappers
 
         public static IList<PlanetDto> MapToPlanetDto(IList<Planet> planets)
         {
-            IList<PlanetDto> planetsDtos = new List<PlanetDto>();
+            IList<PlanetDto> planetDtos = new List<PlanetDto>();
             if (planets.Any())
             {
                 foreach (var planet in planets)
-                    planetsDtos.Add(MapToPlanetDto(planet));
+                    planetDtos.Add(MapToPlanetDto(planet));
             }
-            return planetsDtos;
+            return planetDtos;
         }
 
         public static CharacterDto MapToCharacterDto(Character character)
@@ -88,13 +88,13 @@ namespace May.The.Fourth.Backend.Services.Mappers
 
         public static IList<CharacterDto> MapToCharacterDto(IList<Character> characters)
         {
-            IList<CharacterDto> charactersDtos = new List<CharacterDto>();
+            IList<CharacterDto> characterDtos = new List<CharacterDto>();
             if (characters.Any())
             {
                 foreach (var character in characters)
-                    charactersDtos.Add(MapToCharacterDto(character));
+                    characterDtos.Add(MapToCharacterDto(character));
             }
-            return charactersDtos;
+            return characterDtos;
         }
 
         public static VehicleDto MapToVehicleDto(Vehicle vehicle)
@@ -114,19 +114,53 @@ namespace May.The.Fourth.Backend.Services.Mappers
                 Passengers = vehicle.Passengers,
                 CargoCapacity = vehicle.CargoCapacity,
                 Consumables = vehicle.Consumables,
-                Vehicle_Class = vehicle.Vehicle_Class
+                VehicleClass = vehicle.VehicleClass
             };
         }
 
         public static IList<VehicleDto> MapToVehicleDto(IList<Vehicle> vehicles)
         {
-            IList<VehicleDto> vehiclesDtos = new List<VehicleDto>();
+            IList<VehicleDto> vehicleDtos = new List<VehicleDto>();
             if (vehicles.Any())
             {
                 foreach (var vehicle in vehicles)
-                    vehiclesDtos.Add(MapToVehicleDto(vehicle));
+                    vehicleDtos.Add(MapToVehicleDto(vehicle));
             }
-            return vehiclesDtos;
+            return vehicleDtos;
+        }
+
+        public static StarshipDto MapToStarshipDto(Starship starship)
+        {
+            if (starship == null)
+                return new StarshipDto();
+            return new StarshipDto
+            {
+                Id = starship.Id,
+                Name = starship.Name,
+                Model = starship.Model,
+                Manufacturer = starship.Manufacturer,
+                CostInCredits = starship.CostInCredits,
+                Length = starship.Length,
+                MaxAtmospheringSpeed = starship.MaxAtmospheringSpeed,
+                Crew = starship.Crew,
+                Passengers = starship.Passengers,
+                CargoCapacity = starship.CargoCapacity,
+                Consumables = starship.Consumables,
+                HyperdriveRating = starship.HyperdriveRating,
+                MGLT = starship.MGLT,
+                StarshipClass = starship.StarshipClass
+            };
+        }
+
+        public static IList<StarshipDto> MapToStarshipDto(IList<Starship> starships)
+        {
+            IList<StarshipDto> starshipDtos = new List<StarshipDto>();
+            if (starships.Any())
+            {
+                foreach (var starship in starships)
+                    starshipDtos.Add(MapToStarshipDto(starship));
+            }
+            return starshipDtos;
         }
     }
 }

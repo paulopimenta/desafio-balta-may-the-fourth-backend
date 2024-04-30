@@ -33,7 +33,7 @@ namespace May.The.Fourth.Backend.Data.Repositories
                     Passengers = v.Passengers,
                     CargoCapacity = v.CargoCapacity,
                     Consumables = v.Consumables,
-                    Vehicle_Class = v.Vehicle_Class
+                    VehicleClass = v.VehicleClass
                 }));
                 return vehicles.ToList();
             }
@@ -62,7 +62,7 @@ namespace May.The.Fourth.Backend.Data.Repositories
                         Passengers = s.Passengers,
                         CargoCapacity = s.CargoCapacity,
                         Consumables = s.Consumables,
-                        Vehicle_Class = s.Vehicle_Class
+                        VehicleClass = s.VehicleClass
                     })
                     .FirstOrDefaultAsync();
                 return vehicle;

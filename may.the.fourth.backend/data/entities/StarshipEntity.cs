@@ -3,10 +3,10 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace May.The.Fourth.Backend.Data.Entities;
 
-[Table("Vehicles")]
-public class VehicleEntity
+[Table("Starship")]
+public class StarshipEntity
 {
-    [Column("VehiclesID", TypeName = "INT")]
+    [Column("StarshipID", TypeName = "INT")]
     [Key, DatabaseGenerated(DatabaseGeneratedOption.Identity)]
     public int Id { get; set; }
     
@@ -22,7 +22,7 @@ public class VehicleEntity
     [Required(ErrorMessage = "Manufacturer is required")]
     public string Manufacturer { get; set; } = string.Empty;
 
-    [Column("CostInCredits", TypeName = "VARCHAR(10)")]
+    [Column("CostInCredits", TypeName = "VARCHAR(20)")]
     [Required(ErrorMessage = "CostInCredits is required")]
     public string CostInCredits { get; set; } = string.Empty;
 
@@ -34,11 +34,11 @@ public class VehicleEntity
     [Required(ErrorMessage = "MaxAtmospheringSpeed is required")]
     public string MaxAtmospheringSpeed { get; set; } = string.Empty;
 
-    [Column("Crew", TypeName = "VARCHAR(10)")]
+    [Column("Crew", TypeName = "VARCHAR(20)")]
     [Required(ErrorMessage = "Crew is required")]
     public string Crew { get; set; } = string.Empty;
 
-    [Column("Passengers", TypeName = "VARCHAR(10)")]
+    [Column("Passengers", TypeName = "VARCHAR(20)")]
     [Required(ErrorMessage = "Passengers is required")]
     public string Passengers { get; set; } = string.Empty;
 
@@ -50,7 +50,15 @@ public class VehicleEntity
     [Required(ErrorMessage = "Consumables is required")]
     public string Consumables { get; set; } = string.Empty;
 
-    [Column("VehicleClass", TypeName = "VARCHAR(50)")]
-    [Required(ErrorMessage = "VehicleClass is required")]
-    public string VehicleClass { get; set; } = string.Empty;
+    [Column("HyperdriveRating", TypeName = "VARCHAR(20)")]
+    [Required(ErrorMessage = "HyperdriveRating is required")]
+    public string HyperdriveRating { get; set; } = string.Empty;
+
+    [Column("MGLT", TypeName = "VARCHAR(20)")]
+    [Required(ErrorMessage = "MGLT is required")]
+    public string MGLT { get; set; } = string.Empty;
+
+    [Column("StarshipClass", TypeName = "VARCHAR(50)")]
+    [Required(ErrorMessage = "StarshipClass is required")]
+    public string StarshipClass { get; set; } = string.Empty;
 }

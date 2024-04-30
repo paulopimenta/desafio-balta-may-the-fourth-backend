@@ -1,6 +1,6 @@
 ﻿namespace May.The.Fourth.Backend.Domain.Model;
 
-public class Vehicle
+public class Starship
 {
     public int Id { get; set; }
     public string Name { get; set; } = string.Empty;
@@ -13,5 +13,7 @@ public class Vehicle
     public string Passengers { get; set; } = string.Empty;
     public string CargoCapacity { get; set; } = string.Empty;
     public string Consumables { get; set; } = string.Empty;
-    public string VehicleClass { get; set; } = string.Empty;
+    public string HyperdriveRating { get; set; } = string.Empty;
+    public string MGLT { get; set; } = string.Empty;
+    public string StarshipClass { get; set; } = string.Empty;
 }

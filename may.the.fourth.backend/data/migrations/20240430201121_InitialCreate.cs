@@ -54,6 +54,31 @@ namespace may.the.fourth.backend.data.migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Starship",
+                columns: table => new
+                {
+                    StarshipID = table.Column<int>(type: "INT", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Name = table.Column<string>(type: "VARCHAR(150)", nullable: false),
+                    Model = table.Column<string>(type: "VARCHAR(150)", nullable: false),
+                    Manufacturer = table.Column<string>(type: "VARCHAR(150)", nullable: false),
+                    CostInCredits = table.Column<string>(type: "VARCHAR(20)", nullable: false),
+                    Length = table.Column<string>(type: "VARCHAR(50)", nullable: false),
+                    MaxAtmospheringSpeed = table.Column<string>(type: "VARCHAR(50)", nullable: false),
+                    Crew = table.Column<string>(type: "VARCHAR(20)", nullable: false),
+                    Passengers = table.Column<string>(type: "VARCHAR(20)", nullable: false),
+                    CargoCapacity = table.Column<string>(type: "VARCHAR(50)", nullable: false),
+                    Consumables = table.Column<string>(type: "VARCHAR(50)", nullable: false),
+                    HyperdriveRating = table.Column<string>(type: "VARCHAR(20)", nullable: false),
+                    MGLT = table.Column<string>(type: "VARCHAR(20)", nullable: false),
+                    StarshipClass = table.Column<string>(type: "VARCHAR(50)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Starship", x => x.StarshipID);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Vehicles",
                 columns: table => new
                 {
@@ -69,7 +94,7 @@ namespace may.the.fourth.backend.data.migrations
                     Passengers = table.Column<string>(type: "VARCHAR(10)", nullable: false),
                     CargoCapacity = table.Column<string>(type: "VARCHAR(50)", nullable: false),
                     Consumables = table.Column<string>(type: "VARCHAR(50)", nullable: false),
-                    Vehicle_Class = table.Column<string>(type: "VARCHAR(50)", nullable: false)
+                    VehicleClass = table.Column<string>(type: "VARCHAR(50)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -155,8 +180,25 @@ namespace may.the.fourth.backend.data.migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "Starship",
+                columns: new[] { "StarshipID", "CargoCapacity", "Consumables", "CostInCredits", "Crew", "HyperdriveRating", "Length", "MGLT", "Manufacturer", "MaxAtmospheringSpeed", "Model", "Name", "Passengers", "StarshipClass" },
+                values: new object[,]
+                {
+                    { 1, "3000000", "1 year", "3500000", "30-165", "2.0", "150", "60", "Corellian Engineering Corporation", "950", "CR90 corvette", "CR90 corvette", "600", "corvette" },
+                    { 2, "36000000", "2 years", "150000000", "47,060", "2.0", "1,600", "60", "Kuat Drive Yards", "975", "Imperial I-class Star Destroyer", "Star Destroyer", "n/a", "Star Destroyer" },
+                    { 3, "180000", "1 month", "240000", "5", "1.0", "38", "70", "Sienar Fleet Systems, Cyngus Spaceworks", "1000", "Sentinel-class landing craft", "Sentinel-class landing craft", "75", "landing craft" },
+                    { 4, "1000000000000", "3 years", "1000000000000", "342,953", "4.0", "120000", "10", "Imperial Department of Military Research, Sienar Fleet Systems", "n/a", "DS-1 Orbital Battle Station", "Death Star", "843,342", "Deep Space Mobile Battlestation" },
+                    { 5, "100000", "2 months", "100000", "4", "0.5", "34.37", "75", "Corellian Engineering Corporation", "1050", "YT-1300 light freighter", "Millennium Falcon", "6", "Light freighter" },
+                    { 6, "110", "1 week", "134999", "2", "1.0", "14", "80", "Koensayr Manufacturing", "1000km", "BTL Y-wing", "Y-wing", "0", "assault starfighter" },
+                    { 7, "110", "1 week", "149999", "1", "1.0", "12.5", "100", "Incom Corporation", "1050", "T-65 X-wing", "X-wing", "0", "Starfighter" },
+                    { 8, "150", "5 days", "unknown", "1", "1.0", "9.2", "105", "Sienar Fleet Systems", "1200", "Twin Ion Engine Advanced x1", "TIE Advanced x1", "0", "Starfighter" },
+                    { 9, "250000000", "6 years", "1143350000", "279,144", "2.0", "19000", "40", "Kuat Drive Yards, Fondor Shipyards", "n/a", "Executor-class star dreadnought", "Executor", "38000", "Star dreadnought" },
+                    { 10, "19000000", "6 months", "unknown", "6", "4.0", "90", "20", "Gallofree Yards, Inc.", "650", "GR-75 medium transport", "Rebel transport", "90", "Medium transport" }
+                });
+
+            migrationBuilder.InsertData(
                 table: "Vehicles",
-                columns: new[] { "VehiclesID", "CargoCapacity", "Consumables", "CostInCredits", "Crew", "Length", "Manufacturer", "MaxAtmospheringSpeed", "Model", "Name", "Passengers", "Vehicle_Class" },
+                columns: new[] { "VehiclesID", "CargoCapacity", "Consumables", "CostInCredits", "Crew", "Length", "Manufacturer", "MaxAtmospheringSpeed", "Model", "Name", "Passengers", "VehicleClass" },
                 values: new object[,]
                 {
                     { 1, "50000", "2 months", "150000", "46", "36.8 ", "Corellia Mining Corporation", "30", "Digger Crawler", "Sand Crawler", "30", "wheeled" },
@@ -221,6 +263,9 @@ namespace may.the.fourth.backend.data.migrations
 
             migrationBuilder.DropTable(
                 name: "FilmsPlanets");
+
+            migrationBuilder.DropTable(
+                name: "Starship");
 
             migrationBuilder.DropTable(
                 name: "Vehicles");
