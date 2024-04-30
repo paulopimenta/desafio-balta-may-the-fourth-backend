@@ -25,14 +25,14 @@ namespace May.The.Fourth.Backend.Services
                     characterListResponse.Success = true;
                     characterListResponse.Message = "SUCCESS";
                     characterListResponse.StatusCode = 200;
-                    characterListResponse.CharacterDto = MapperDto.MapToCharacterDto(characters);
+                    characterListResponse.CharacterDtos = MapperDto.MapToCharacterDto(characters);
                 }
                 else
                 {
                     characterListResponse.Success = false;
                     characterListResponse.Message = "FAILED";
                     characterListResponse.StatusCode = 500;
-                    characterListResponse.CharacterDto = null;
+                    characterListResponse.CharacterDtos = null;
                 }
                 return characterListResponse;
             }
@@ -43,7 +43,7 @@ namespace May.The.Fourth.Backend.Services
                     Success = false,
                     Message = "Internal server error",
                     StatusCode = 500,
-                    CharacterDto = null
+                    CharacterDtos = null
                 };
             }
         }

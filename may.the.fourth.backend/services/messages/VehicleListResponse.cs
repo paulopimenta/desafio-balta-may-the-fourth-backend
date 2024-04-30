@@ -2,8 +2,8 @@ using May.The.Fourth.Backend.Services.Mappers;
 
 namespace May.The.Fourth.Backend.Services.Messages
 {
-    public class PlanetListResponse : ResponseBase
+    public class VehicleListResponse : ResponseBase
     {
-        public IList<PlanetDto>? PlanetDtos { get; set; }
+        public IList<VehicleDto>? VehicleDtos { get; set; }
     }
 }

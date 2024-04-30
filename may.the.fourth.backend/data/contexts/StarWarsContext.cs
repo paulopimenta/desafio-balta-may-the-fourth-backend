@@ -13,6 +13,7 @@ namespace May.The.Fourth.Backend.Data.Contexts
         public DbSet<PlanetEntity> Planets { get; set; }
         public DbSet<FilmPlanetEntity> FilmsPlanets { get; set; }
         public DbSet<CharacterEntity> Characters { get; set; }
+        public DbSet<VehicleEntity> Vehicles { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -74,6 +75,20 @@ namespace May.The.Fourth.Backend.Data.Contexts
                 new CharacterEntity { Id = 7, Name = "Beru Whitesun lars", Height = "165", Weight = "75", HairColor = "brown", SkinColor = "light", EyeColor = "blue", BirthYear = "47BBY", Gender = "female", PlanetId = 1 },
                 new CharacterEntity { Id = 8, Name = "R5-D4", Height = "97", Weight = "32", HairColor = "n/a", SkinColor = "white, red", EyeColor = "red", BirthYear = "unknown", Gender = "n/a", PlanetId = 1},
                 new CharacterEntity { Id = 9, Name = "Biggs Darklighter", Height = "183", Weight = "84", HairColor = "black", SkinColor = "light", EyeColor = "brown", BirthYear = "24BBY", Gender = "male", PlanetId = 1 }
+            );
+
+            // vehicles
+            modelBuilder.Entity<VehicleEntity>().HasData(
+                new VehicleEntity { Id = 1, Name = "Sand Crawler", Model = "Digger Crawler", Manufacturer = "Corellia Mining Corporation", CostInCredits = "150000", Length = "36.8 ", MaxAtmospheringSpeed = "30", Crew = "46", Passengers = "30", CargoCapacity = "50000", Consumables = "2 months", Vehicle_Class = "wheeled" },
+                new VehicleEntity { Id = 2, Name = "T-16 skyhopper", Model = "T-16 skyhopper", Manufacturer = "Incom Corporation", CostInCredits = "14500", Length = "10.4 ", MaxAtmospheringSpeed = "1200", Crew = "1", Passengers = "1", CargoCapacity = "50", Consumables = "0", Vehicle_Class = "repulsorcraft" },
+                new VehicleEntity { Id = 3, Name = "X-34 landspeeder", Model = "X-34 landspeeder", Manufacturer = "SoroSuub Corporation", CostInCredits = "10550", Length = "3.4 ", MaxAtmospheringSpeed = "250", Crew = "1", Passengers = "1", CargoCapacity = "5", Consumables = "unknown", Vehicle_Class = "repulsorcraft" },
+                new VehicleEntity { Id = 4, Name = "TIE/LN starfighter", Model = "Twin Ion Engine/Ln Starfighter", Manufacturer = "Sienar Fleet Systems", CostInCredits = "unknown", Length = "36.4", MaxAtmospheringSpeed = "1200", Crew = "1", Passengers = "0", CargoCapacity = "65", Consumables = "2 days", Vehicle_Class = "starfighter" },
+                new VehicleEntity { Id = 5, Name = "Snowspeeder", Model = "t-47 airspeeder", Manufacturer = "Incom corporation", CostInCredits = "unknown", Length = "4.5", MaxAtmospheringSpeed = "650", Crew = "2", Passengers = "0", CargoCapacity = "10", Consumables = "none", Vehicle_Class = "airspeeder" },
+                new VehicleEntity { Id = 6, Name = "TIE bomber", Model = "TIE/sa bomber", Manufacturer = "Sienar Fleet Systems", CostInCredits = "unknown", Length = "7.8", MaxAtmospheringSpeed = "850", Crew = "1", Passengers = "0", CargoCapacity = "none", Consumables = "2 days", Vehicle_Class = "space/planetary bomber" },
+                new VehicleEntity { Id = 7, Name = "AT-AT", Model = "All Terrain Armored Transport", Manufacturer = "Kuat Drive Yards, Imperial Department of Military Research", CostInCredits = "unknown", Length = "20", MaxAtmospheringSpeed = "60", Crew = "5", Passengers = "40", CargoCapacity = "1000", Consumables = "unknown", Vehicle_Class = "assault walker" },
+                new VehicleEntity { Id = 8, Name = "AT-ST", Model = "All Terrain Scout Transport", Manufacturer = "Kuat Drive Yards, Imperial Department of Military Research", CostInCredits = "unknown", Length = "2 ", MaxAtmospheringSpeed = "90", Crew = "2", Passengers = "0", CargoCapacity = "200", Consumables = "none", Vehicle_Class = "walker" },
+                new VehicleEntity { Id = 9, Name = "Storm IV Twin-Pod cloud car", Model = "Storm IV Twin-Pod", Manufacturer = "Bespin Motors", CostInCredits = "75000", Length = "7", MaxAtmospheringSpeed = "1500", Crew = "2", Passengers = "0", CargoCapacity = "10", Consumables = "1 day", Vehicle_Class = "repulsorcraft" },
+                new VehicleEntity { Id = 10, Name = "Sail barge", Model = "Modified Luxury Sail Barge", Manufacturer = "Ubrikkian Industries Custom Vehicle Division", CostInCredits = "285000", Length = "30", MaxAtmospheringSpeed = "100", Crew = "26", Passengers = "500", CargoCapacity = "2000000", Consumables = "Live food tanks", Vehicle_Class = "sail barge" }
             );
         }
     }

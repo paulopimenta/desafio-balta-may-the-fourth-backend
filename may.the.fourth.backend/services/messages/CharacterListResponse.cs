@@ -4,6 +4,6 @@ namespace May.The.Fourth.Backend.Services.Messages
 {
     public class CharacterListResponse : ResponseBase
     {
-        public IList<CharacterDto>? CharacterDto { get; set; }
+        public IList<CharacterDto>? CharacterDtos { get; set; }
     }
 }

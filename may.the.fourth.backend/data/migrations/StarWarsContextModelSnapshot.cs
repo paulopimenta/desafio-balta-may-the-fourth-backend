@@ -546,6 +546,227 @@ namespace may.the.fourth.backend.data.migrations
                         });
                 });
 
+            modelBuilder.Entity("May.The.Fourth.Backend.Data.Entities.VehicleEntity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INT")
+                        .HasColumnName("VehiclesID");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("CargoCapacity")
+                        .IsRequired()
+                        .HasColumnType("VARCHAR(50)")
+                        .HasColumnName("CargoCapacity");
+
+                    b.Property<string>("Consumables")
+                        .IsRequired()
+                        .HasColumnType("VARCHAR(50)")
+                        .HasColumnName("Consumables");
+
+                    b.Property<string>("CostInCredits")
+                        .IsRequired()
+                        .HasColumnType("VARCHAR(10)")
+                        .HasColumnName("CostInCredits");
+
+                    b.Property<string>("Crew")
+                        .IsRequired()
+                        .HasColumnType("VARCHAR(10)")
+                        .HasColumnName("Crew");
+
+                    b.Property<string>("Length")
+                        .IsRequired()
+                        .HasColumnType("VARCHAR(50)")
+                        .HasColumnName("Length");
+
+                    b.Property<string>("Manufacturer")
+                        .IsRequired()
+                        .HasColumnType("VARCHAR(150)")
+                        .HasColumnName("Manufacturer");
+
+                    b.Property<string>("MaxAtmospheringSpeed")
+                        .IsRequired()
+                        .HasColumnType("VARCHAR(50)")
+                        .HasColumnName("MaxAtmospheringSpeed");
+
+                    b.Property<string>("Model")
+                        .IsRequired()
+                        .HasColumnType("VARCHAR(150)")
+                        .HasColumnName("Model");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasColumnType("VARCHAR(150)")
+                        .HasColumnName("Name");
+
+                    b.Property<string>("Passengers")
+                        .IsRequired()
+                        .HasColumnType("VARCHAR(10)")
+                        .HasColumnName("Passengers");
+
+                    b.Property<string>("Vehicle_Class")
+                        .IsRequired()
+                        .HasColumnType("VARCHAR(50)")
+                        .HasColumnName("Vehicle_Class");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Vehicles");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            CargoCapacity = "50000",
+                            Consumables = "2 months",
+                            CostInCredits = "150000",
+                            Crew = "46",
+                            Length = "36.8 ",
+                            Manufacturer = "Corellia Mining Corporation",
+                            MaxAtmospheringSpeed = "30",
+                            Model = "Digger Crawler",
+                            Name = "Sand Crawler",
+                            Passengers = "30",
+                            Vehicle_Class = "wheeled"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            CargoCapacity = "50",
+                            Consumables = "0",
+                            CostInCredits = "14500",
+                            Crew = "1",
+                            Length = "10.4 ",
+                            Manufacturer = "Incom Corporation",
+                            MaxAtmospheringSpeed = "1200",
+                            Model = "T-16 skyhopper",
+                            Name = "T-16 skyhopper",
+                            Passengers = "1",
+                            Vehicle_Class = "repulsorcraft"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            CargoCapacity = "5",
+                            Consumables = "unknown",
+                            CostInCredits = "10550",
+                            Crew = "1",
+                            Length = "3.4 ",
+                            Manufacturer = "SoroSuub Corporation",
+                            MaxAtmospheringSpeed = "250",
+                            Model = "X-34 landspeeder",
+                            Name = "X-34 landspeeder",
+                            Passengers = "1",
+                            Vehicle_Class = "repulsorcraft"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            CargoCapacity = "65",
+                            Consumables = "2 days",
+                            CostInCredits = "unknown",
+                            Crew = "1",
+                            Length = "36.4",
+                            Manufacturer = "Sienar Fleet Systems",
+                            MaxAtmospheringSpeed = "1200",
+                            Model = "Twin Ion Engine/Ln Starfighter",
+                            Name = "TIE/LN starfighter",
+                            Passengers = "0",
+                            Vehicle_Class = "starfighter"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            CargoCapacity = "10",
+                            Consumables = "none",
+                            CostInCredits = "unknown",
+                            Crew = "2",
+                            Length = "4.5",
+                            Manufacturer = "Incom corporation",
+                            MaxAtmospheringSpeed = "650",
+                            Model = "t-47 airspeeder",
+                            Name = "Snowspeeder",
+                            Passengers = "0",
+                            Vehicle_Class = "airspeeder"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            CargoCapacity = "none",
+                            Consumables = "2 days",
+                            CostInCredits = "unknown",
+                            Crew = "1",
+                            Length = "7.8",
+                            Manufacturer = "Sienar Fleet Systems",
+                            MaxAtmospheringSpeed = "850",
+                            Model = "TIE/sa bomber",
+                            Name = "TIE bomber",
+                            Passengers = "0",
+                            Vehicle_Class = "space/planetary bomber"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            CargoCapacity = "1000",
+                            Consumables = "unknown",
+                            CostInCredits = "unknown",
+                            Crew = "5",
+                            Length = "20",
+                            Manufacturer = "Kuat Drive Yards, Imperial Department of Military Research",
+                            MaxAtmospheringSpeed = "60",
+                            Model = "All Terrain Armored Transport",
+                            Name = "AT-AT",
+                            Passengers = "40",
+                            Vehicle_Class = "assault walker"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            CargoCapacity = "200",
+                            Consumables = "none",
+                            CostInCredits = "unknown",
+                            Crew = "2",
+                            Length = "2 ",
+                            Manufacturer = "Kuat Drive Yards, Imperial Department of Military Research",
+                            MaxAtmospheringSpeed = "90",
+                            Model = "All Terrain Scout Transport",
+                            Name = "AT-ST",
+                            Passengers = "0",
+                            Vehicle_Class = "walker"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            CargoCapacity = "10",
+                            Consumables = "1 day",
+                            CostInCredits = "75000",
+                            Crew = "2",
+                            Length = "7",
+                            Manufacturer = "Bespin Motors",
+                            MaxAtmospheringSpeed = "1500",
+                            Model = "Storm IV Twin-Pod",
+                            Name = "Storm IV Twin-Pod cloud car",
+                            Passengers = "0",
+                            Vehicle_Class = "repulsorcraft"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            CargoCapacity = "2000000",
+                            Consumables = "Live food tanks",
+                            CostInCredits = "285000",
+                            Crew = "26",
+                            Length = "30",
+                            Manufacturer = "Ubrikkian Industries Custom Vehicle Division",
+                            MaxAtmospheringSpeed = "100",
+                            Model = "Modified Luxury Sail Barge",
+                            Name = "Sail barge",
+                            Passengers = "500",
+                            Vehicle_Class = "sail barge"
+                        });
+                });
+
             modelBuilder.Entity("May.The.Fourth.Backend.Data.Entities.CharacterEntity", b =>
                 {
                     b.HasOne("May.The.Fourth.Backend.Data.Entities.PlanetEntity", "Planet")

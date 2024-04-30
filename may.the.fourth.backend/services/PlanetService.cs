@@ -25,14 +25,14 @@ namespace May.The.Fourth.Backend.Services
                     planetListResponse.Success = true;
                     planetListResponse.Message = "SUCCESS";
                     planetListResponse.StatusCode = 200;
-                    planetListResponse.PlanetDto = MapperDto.MapToPlanetDto(planets);
+                    planetListResponse.PlanetDtos = MapperDto.MapToPlanetDto(planets);
                 }
                 else
                 {
                     planetListResponse.Success = false;
                     planetListResponse.Message = "FAILED";
                     planetListResponse.StatusCode = 500;
-                    planetListResponse.PlanetDto = null;
+                    planetListResponse.PlanetDtos = null;
                 }
                 return planetListResponse;
             }
@@ -43,7 +43,7 @@ namespace May.The.Fourth.Backend.Services
                     Success = false,
                     Message = "Internal server error",
                     StatusCode = 500,
-                    PlanetDto = null
+                    PlanetDtos = null
                 };
             }
         }

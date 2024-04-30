@@ -54,13 +54,13 @@ namespace May.The.Fourth.Backend.Services.Mappers
 
         public static IList<PlanetDto> MapToPlanetDto(IList<Planet> planets)
         {
-            IList<PlanetDto> planetsDto = new List<PlanetDto>();
+            IList<PlanetDto> planetsDtos = new List<PlanetDto>();
             if (planets.Any())
             {
                 foreach (var planet in planets)
-                    planetsDto.Add(MapToPlanetDto(planet));
+                    planetsDtos.Add(MapToPlanetDto(planet));
             }
-            return planetsDto;
+            return planetsDtos;
         }
 
         public static CharacterDto MapToCharacterDto(Character character)
@@ -88,13 +88,45 @@ namespace May.The.Fourth.Backend.Services.Mappers
 
         public static IList<CharacterDto> MapToCharacterDto(IList<Character> characters)
         {
-            IList<CharacterDto> charactersDto = new List<CharacterDto>();
+            IList<CharacterDto> charactersDtos = new List<CharacterDto>();
             if (characters.Any())
             {
                 foreach (var character in characters)
-                    charactersDto.Add(MapToCharacterDto(character));
+                    charactersDtos.Add(MapToCharacterDto(character));
             }
-            return charactersDto;
+            return charactersDtos;
+        }
+
+        public static VehicleDto MapToVehicleDto(Vehicle vehicle)
+        {
+            if (vehicle == null)
+                return new VehicleDto();
+            return new VehicleDto
+            {
+                Id = vehicle.Id,
+                Name = vehicle.Name,
+                Model = vehicle.Model,
+                Manufacturer = vehicle.Manufacturer,
+                CostInCredits = vehicle.CostInCredits,
+                Length = vehicle.Length,
+                MaxAtmospheringSpeed = vehicle.MaxAtmospheringSpeed,
+                Crew = vehicle.Crew,
+                Passengers = vehicle.Passengers,
+                CargoCapacity = vehicle.CargoCapacity,
+                Consumables = vehicle.Consumables,
+                Vehicle_Class = vehicle.Vehicle_Class
+            };
+        }
+
+        public static IList<VehicleDto> MapToVehicleDto(IList<Vehicle> vehicles)
+        {
+            IList<VehicleDto> vehiclesDtos = new List<VehicleDto>();
+            if (vehicles.Any())
+            {
+                foreach (var vehicle in vehicles)
+                    vehiclesDtos.Add(MapToVehicleDto(vehicle));
+            }
+            return vehiclesDtos;
         }
     }
 }

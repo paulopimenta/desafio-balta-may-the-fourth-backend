@@ -54,6 +54,29 @@ namespace may.the.fourth.backend.data.migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "Vehicles",
+                columns: table => new
+                {
+                    VehiclesID = table.Column<int>(type: "INT", nullable: false)
+                        .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
+                    Name = table.Column<string>(type: "VARCHAR(150)", nullable: false),
+                    Model = table.Column<string>(type: "VARCHAR(150)", nullable: false),
+                    Manufacturer = table.Column<string>(type: "VARCHAR(150)", nullable: false),
+                    CostInCredits = table.Column<string>(type: "VARCHAR(10)", nullable: false),
+                    Length = table.Column<string>(type: "VARCHAR(50)", nullable: false),
+                    MaxAtmospheringSpeed = table.Column<string>(type: "VARCHAR(50)", nullable: false),
+                    Crew = table.Column<string>(type: "VARCHAR(10)", nullable: false),
+                    Passengers = table.Column<string>(type: "VARCHAR(10)", nullable: false),
+                    CargoCapacity = table.Column<string>(type: "VARCHAR(50)", nullable: false),
+                    Consumables = table.Column<string>(type: "VARCHAR(50)", nullable: false),
+                    Vehicle_Class = table.Column<string>(type: "VARCHAR(50)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Vehicles", x => x.VehiclesID);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Characters",
                 columns: table => new
                 {
@@ -132,6 +155,23 @@ namespace may.the.fourth.backend.data.migrations
                 });
 
             migrationBuilder.InsertData(
+                table: "Vehicles",
+                columns: new[] { "VehiclesID", "CargoCapacity", "Consumables", "CostInCredits", "Crew", "Length", "Manufacturer", "MaxAtmospheringSpeed", "Model", "Name", "Passengers", "Vehicle_Class" },
+                values: new object[,]
+                {
+                    { 1, "50000", "2 months", "150000", "46", "36.8 ", "Corellia Mining Corporation", "30", "Digger Crawler", "Sand Crawler", "30", "wheeled" },
+                    { 2, "50", "0", "14500", "1", "10.4 ", "Incom Corporation", "1200", "T-16 skyhopper", "T-16 skyhopper", "1", "repulsorcraft" },
+                    { 3, "5", "unknown", "10550", "1", "3.4 ", "SoroSuub Corporation", "250", "X-34 landspeeder", "X-34 landspeeder", "1", "repulsorcraft" },
+                    { 4, "65", "2 days", "unknown", "1", "36.4", "Sienar Fleet Systems", "1200", "Twin Ion Engine/Ln Starfighter", "TIE/LN starfighter", "0", "starfighter" },
+                    { 5, "10", "none", "unknown", "2", "4.5", "Incom corporation", "650", "t-47 airspeeder", "Snowspeeder", "0", "airspeeder" },
+                    { 6, "none", "2 days", "unknown", "1", "7.8", "Sienar Fleet Systems", "850", "TIE/sa bomber", "TIE bomber", "0", "space/planetary bomber" },
+                    { 7, "1000", "unknown", "unknown", "5", "20", "Kuat Drive Yards, Imperial Department of Military Research", "60", "All Terrain Armored Transport", "AT-AT", "40", "assault walker" },
+                    { 8, "200", "none", "unknown", "2", "2 ", "Kuat Drive Yards, Imperial Department of Military Research", "90", "All Terrain Scout Transport", "AT-ST", "0", "walker" },
+                    { 9, "10", "1 day", "75000", "2", "7", "Bespin Motors", "1500", "Storm IV Twin-Pod", "Storm IV Twin-Pod cloud car", "0", "repulsorcraft" },
+                    { 10, "2000000", "Live food tanks", "285000", "26", "30", "Ubrikkian Industries Custom Vehicle Division", "100", "Modified Luxury Sail Barge", "Sail barge", "500", "sail barge" }
+                });
+
+            migrationBuilder.InsertData(
                 table: "Characters",
                 columns: new[] { "CharacterID", "BirthYear", "EyeColor", "Gender", "HairColor", "Height", "Name", "PlanetID", "SkinColor", "Weight" },
                 values: new object[,]
@@ -181,6 +221,9 @@ namespace may.the.fourth.backend.data.migrations
 
             migrationBuilder.DropTable(
                 name: "FilmsPlanets");
+
+            migrationBuilder.DropTable(
+                name: "Vehicles");
 
             migrationBuilder.DropTable(
                 name: "Planets");
