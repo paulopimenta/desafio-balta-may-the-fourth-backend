@@ -5,31 +5,32 @@ namespace May.The.Fourth.Backend.Services.Mappers
 {
     public static class MapperDto
     {
-        public static FilmeDto MapToFilmDto(FilmeEntity filme)
+        public static FilmDto MapToFilmDto(Film film)
         {
-            if (filme == null)
-                return new FilmeDto();
-            return new FilmeDto
+            if (film == null)
+                return new FilmDto();
+            return new FilmDto
             {
-                Id = filme.Id,
-                Titulo = filme.Titulo,
-                Episodio = filme.Episodio,
-                TextoAbertura = filme.TextoAbertura,
-                Diretor = filme.Diretor,
-                Produtor = filme.Produtor,
-                DataLancamento = filme.DataLancamento
+                Id = film.Id,
+                Title = film.Title,
+                Episode = film.Episode,
+                OpeningCrawl = film.OpeningCrawl,
+                Director = film.Director,
+                Producer = film.Producer,
+                ReleaseDate = film.ReleaseDate,
+                CharactersDto = film.Characters.Select(c => new CharacterDto { Id = c.Id, Name = c.Name }).ToList()
             };
         }
 
-        public static IList<FilmeDto> MapToFilmDto(IList<FilmeEntity> filmeEntities)
+        public static IList<FilmDto> MapToFilmDto(IList<Film> films)
         {
-            IList<FilmeDto> filmes = new List<FilmeDto>();
-            if (filmeEntities.Any())
+            IList<FilmDto> filmsDtos = new List<FilmDto>();
+            if (films.Any())
             {
-                foreach (var filmeEntity in filmeEntities)
-                    filmes.Add(MapToFilmDto(filmeEntity));
+                foreach (var film in films)
+                    filmsDtos.Add(MapToFilmDto(film));
             }
-            return filmes;
+            return filmsDtos;
         }
 
         public static PlanetDto MapToPlanetDto(Planet planet)

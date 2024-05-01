@@ -35,12 +35,12 @@ builder.Services.AddSwaggerGen(options =>
     var xmlFilename = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
     options.IncludeXmlComments(Path.Combine(AppContext.BaseDirectory, xmlFilename));
 });
-builder.Services.AddScoped<IFilmeRepository, FilmeRepository>();
+builder.Services.AddScoped<IFilmRepository, FilmRepository>();
 builder.Services.AddScoped<ICharacterRepository, CharacterRepository>();
 builder.Services.AddScoped<IPlanetRepository, PlanetRepository>();
 builder.Services.AddScoped<IVehicleRepository, VehicleRepository>();
 
-builder.Services.AddScoped<IFilmeService, FilmeService>();
+builder.Services.AddScoped<IFilmService, FilmService>();
 builder.Services.AddScoped<ICharacterService, CharacterService>();
 builder.Services.AddScoped<IPlanetService, PlanetService>();
 builder.Services.AddScoped<IVehicleService, VehicleService>();
@@ -60,7 +60,8 @@ app.UseSwagger();
 // endpoints
 var endpoints = app.MapGroup("/star-wars");
 endpoints.MapGet("/", () => "Hello Star Wars World!");
-endpoints.MapGet("/filmes", GetFilmes);
+endpoints.MapGet("/films", GetFilmsAsync);
+endpoints.MapGet("/films/{id}", GetFilmByIdAsync);
 endpoints.MapGet("/characters", GetCharactersAsync);
 endpoints.MapGet("/character/{id}", GetCharacterByIdAsync);
 endpoints.MapGet("/planets", GetPlanetsAsync);
@@ -77,9 +78,17 @@ app.UseSwaggerUI(options =>
 
 app.Run();
 
-static async Task<IResult> GetFilmes(IFilmeService filmeService)
+static async Task<IResult> GetFilmsAsync(IFilmService filmService)
 {
-    var result = await filmeService.GetFilmes();
+    var result = await filmService.GetFilmsAsync();
+    return result.Success 
+        ? TypedResults.Ok(result) 
+        : TypedResults.BadRequest(result);
+}
+
+static async Task<IResult> GetFilmByIdAsync(int id, IFilmService filmService)
+{
+    var result = await filmService.GetFilmByIdAsync(id);
     return result.Success 
         ? TypedResults.Ok(result) 
         : TypedResults.BadRequest(result);

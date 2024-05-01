@@ -201,6 +201,199 @@ namespace may.the.fourth.backend.data.migrations
                         });
                 });
 
+            modelBuilder.Entity("May.The.Fourth.Backend.Data.Entities.FilmCharacterEntity", b =>
+                {
+                    b.Property<int>("CharacterId")
+                        .HasColumnType("INT")
+                        .HasColumnName("CharacterID");
+
+                    b.HasKey("CharacterId");
+
+                    b.ToTable("FilmsCharacters");
+
+                    b.HasData(
+                        new
+                        {
+                            CharacterId = 1
+                        },
+                        new
+                        {
+                            CharacterId = 2
+                        },
+                        new
+                        {
+                            CharacterId = 3
+                        },
+                        new
+                        {
+                            CharacterId = 4
+                        },
+                        new
+                        {
+                            CharacterId = 5
+                        },
+                        new
+                        {
+                            CharacterId = 6
+                        },
+                        new
+                        {
+                            CharacterId = 7
+                        },
+                        new
+                        {
+                            CharacterId = 8
+                        },
+                        new
+                        {
+                            CharacterId = 9
+                        });
+                });
+
+            modelBuilder.Entity("May.The.Fourth.Backend.Data.Entities.FilmEntity", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("INT")
+                        .HasColumnName("FilmeID");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Director")
+                        .IsRequired()
+                        .HasColumnType("VARCHAR(150)")
+                        .HasColumnName("Director");
+
+                    b.Property<int>("Episode")
+                        .HasColumnType("INT")
+                        .HasColumnName("Episode");
+
+                    b.Property<string>("OpeningCrawl")
+                        .IsRequired()
+                        .HasColumnType("VARCHAR(500)")
+                        .HasColumnName("OpeningCrawl");
+
+                    b.Property<string>("Producer")
+                        .IsRequired()
+                        .HasColumnType("VARCHAR(150)")
+                        .HasColumnName("Producer");
+
+                    b.Property<DateTime?>("ReleaseDate")
+                        .HasColumnType("DATE")
+                        .HasColumnName("ReleaseDate");
+
+                    b.Property<string>("Title")
+                        .IsRequired()
+                        .HasColumnType("VARCHAR(500)")
+                        .HasColumnName("Title");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Films");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            Director = "Jana Doe",
+                            Episode = 10,
+                            OpeningCrawl = "After the fall of the Empire, the galaxy face",
+                            Producer = "Leo Smith",
+                            ReleaseDate = new DateTime(2028, 12, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Title = "The Rise of the Jedi"
+                        },
+                        new
+                        {
+                            Id = 2,
+                            Director = "",
+                            Episode = 0,
+                            OpeningCrawl = "",
+                            Producer = "",
+                            Title = "The Battle of the Stars"
+                        },
+                        new
+                        {
+                            Id = 3,
+                            Director = "",
+                            Episode = 0,
+                            OpeningCrawl = "",
+                            Producer = "",
+                            Title = "Return of the Light"
+                        },
+                        new
+                        {
+                            Id = 4,
+                            Director = "",
+                            Episode = 0,
+                            OpeningCrawl = "",
+                            Producer = "",
+                            Title = "Warriors of the Shadow Realm"
+                        },
+                        new
+                        {
+                            Id = 5,
+                            Director = "",
+                            Episode = 0,
+                            OpeningCrawl = "",
+                            Producer = "",
+                            Title = "The Galactic Quest"
+                        },
+                        new
+                        {
+                            Id = 6,
+                            Director = "",
+                            Episode = 0,
+                            OpeningCrawl = "",
+                            Producer = "",
+                            Title = "Rise of the Planetara"
+                        },
+                        new
+                        {
+                            Id = 7,
+                            Director = "",
+                            Episode = 0,
+                            OpeningCrawl = "",
+                            Producer = "",
+                            Title = "Echoes of the Stars"
+                        },
+                        new
+                        {
+                            Id = 8,
+                            Director = "",
+                            Episode = 0,
+                            OpeningCrawl = "",
+                            Producer = "",
+                            Title = "The Return of the Voyager"
+                        },
+                        new
+                        {
+                            Id = 9,
+                            Director = "",
+                            Episode = 0,
+                            OpeningCrawl = "",
+                            Producer = "",
+                            Title = "Voyager's Endgame"
+                        },
+                        new
+                        {
+                            Id = 10,
+                            Director = "",
+                            Episode = 0,
+                            OpeningCrawl = "",
+                            Producer = "",
+                            Title = "Galactic Odyssey"
+                        },
+                        new
+                        {
+                            Id = 11,
+                            Director = "",
+                            Episode = 0,
+                            OpeningCrawl = "",
+                            Producer = "",
+                            Title = "The Edge of the Universe"
+                        });
+                });
+
             modelBuilder.Entity("May.The.Fourth.Backend.Data.Entities.FilmPlanetEntity", b =>
                 {
                     b.Property<int>("PlanetId")
@@ -251,107 +444,6 @@ namespace may.the.fourth.backend.data.migrations
                         new
                         {
                             PlanetId = 10
-                        });
-                });
-
-            modelBuilder.Entity("May.The.Fourth.Backend.Data.Entities.FilmeEntity", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("INT")
-                        .HasColumnName("FilmeID");
-
-                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime?>("DataLancamento")
-                        .HasColumnType("DATE")
-                        .HasColumnName("DataLancamento");
-
-                    b.Property<string>("Diretor")
-                        .HasColumnType("VARCHAR(150)")
-                        .HasColumnName("Diretor");
-
-                    b.Property<int?>("Episodio")
-                        .HasColumnType("INT")
-                        .HasColumnName("Episodio");
-
-                    b.Property<string>("Produtor")
-                        .HasColumnType("VARCHAR(150)")
-                        .HasColumnName("Produtor");
-
-                    b.Property<string>("TextoAbertura")
-                        .HasColumnType("VARCHAR(500)")
-                        .HasColumnName("TextoAbertura");
-
-                    b.Property<string>("Titulo")
-                        .IsRequired()
-                        .HasColumnType("VARCHAR(500)")
-                        .HasColumnName("Titulo");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Filmes");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = 1,
-                            DataLancamento = new DateTime(2028, 12, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
-                            Diretor = "Jana Doe",
-                            Episodio = 10,
-                            Produtor = "Leo Smith",
-                            TextoAbertura = "After the fall of the Empire, the galaxy face",
-                            Titulo = "The Rise of the Jedi"
-                        },
-                        new
-                        {
-                            Id = 2,
-                            Titulo = "The Battle of the Stars"
-                        },
-                        new
-                        {
-                            Id = 3,
-                            Titulo = "Return of the Light"
-                        },
-                        new
-                        {
-                            Id = 4,
-                            Titulo = "Warriors of the Shadow Realm"
-                        },
-                        new
-                        {
-                            Id = 5,
-                            Titulo = "The Galactic Quest"
-                        },
-                        new
-                        {
-                            Id = 6,
-                            Titulo = "Rise of the Planetara"
-                        },
-                        new
-                        {
-                            Id = 7,
-                            Titulo = "Echoes of the Stars"
-                        },
-                        new
-                        {
-                            Id = 8,
-                            Titulo = "The Return of the Voyager"
-                        },
-                        new
-                        {
-                            Id = 9,
-                            Titulo = "Voyager's Endgame"
-                        },
-                        new
-                        {
-                            Id = 10,
-                            Titulo = "Galactic Odyssey"
-                        },
-                        new
-                        {
-                            Id = 11,
-                            Titulo = "The Edge of the Universe"
                         });
                 });
 
@@ -774,6 +866,17 @@ namespace may.the.fourth.backend.data.migrations
                         .HasForeignKey("PlanetId");
 
                     b.Navigation("Planet");
+                });
+
+            modelBuilder.Entity("May.The.Fourth.Backend.Data.Entities.FilmCharacterEntity", b =>
+                {
+                    b.HasOne("May.The.Fourth.Backend.Data.Entities.CharacterEntity", "Character")
+                        .WithMany()
+                        .HasForeignKey("CharacterId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Character");
                 });
 
             modelBuilder.Entity("May.The.Fourth.Backend.Data.Entities.FilmPlanetEntity", b =>

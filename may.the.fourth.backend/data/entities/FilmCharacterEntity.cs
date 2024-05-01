@@ -3,8 +3,8 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace May.The.Fourth.Backend.Data.Entities;
 
-[Table("FilmsPlanets")]
-public class FilmPlanetEntity
+[Table("FilmsCharacters")]
+public class FilmCharacterEntity
 {
     [Key]
     [Column("FilmID", TypeName = "INT")]
@@ -12,11 +12,11 @@ public class FilmPlanetEntity
     public int FilmId { get; set; }
 
     public FilmEntity? Film { get; set; }
-    
-    [Key]
-    [Column("PlanetID", TypeName = "INT")]
-    [ForeignKey("Planet")]
-    public int PlanetId { get; set; }
 
-    public PlanetEntity? Planet { get; set; }
+    [Key]
+    [Column("CharacterID", TypeName = "INT")]
+    [ForeignKey("Character")]
+    public int CharacterId { get; set; }
+
+    public CharacterEntity? Character { get; set; }
 }

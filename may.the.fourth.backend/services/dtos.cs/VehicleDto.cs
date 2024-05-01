@@ -29,7 +29,7 @@ namespace May.The.Fourth.Backend.Services.Mappers
         public string? Passengers { get; set; }
 
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
-        public string? CargoCapacity;
+        public string? CargoCapacity { get; set; }
 
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public string? Consumables { get; set; }

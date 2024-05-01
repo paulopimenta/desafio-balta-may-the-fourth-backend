@@ -15,21 +15,21 @@ namespace may.the.fourth.backend.data.migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Filmes",
+                name: "Films",
                 columns: table => new
                 {
                     FilmeID = table.Column<int>(type: "INT", nullable: false)
                         .Annotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn),
-                    Titulo = table.Column<string>(type: "VARCHAR(500)", nullable: false),
-                    Episodio = table.Column<int>(type: "INT", nullable: true),
-                    TextoAbertura = table.Column<string>(type: "VARCHAR(500)", nullable: true),
-                    Diretor = table.Column<string>(type: "VARCHAR(150)", nullable: true),
-                    Produtor = table.Column<string>(type: "VARCHAR(150)", nullable: true),
-                    DataLancamento = table.Column<DateTime>(type: "DATE", nullable: true)
+                    Title = table.Column<string>(type: "VARCHAR(500)", nullable: false),
+                    Episode = table.Column<int>(type: "INT", nullable: false),
+                    OpeningCrawl = table.Column<string>(type: "VARCHAR(500)", nullable: false),
+                    Director = table.Column<string>(type: "VARCHAR(150)", nullable: false),
+                    Producer = table.Column<string>(type: "VARCHAR(150)", nullable: false),
+                    ReleaseDate = table.Column<DateTime>(type: "DATE", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Filmes", x => x.FilmeID);
+                    table.PrimaryKey("PK_Films", x => x.FilmeID);
                 });
 
             migrationBuilder.CreateTable(
@@ -119,22 +119,39 @@ namespace may.the.fourth.backend.data.migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "FilmsCharacters",
+                columns: table => new
+                {
+                    CharacterID = table.Column<int>(type: "INT", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_FilmsCharacters", x => x.CharacterID);
+                    table.ForeignKey(
+                        name: "FK_FilmsCharacters_Characters_CharacterID",
+                        column: x => x.CharacterID,
+                        principalTable: "Characters",
+                        principalColumn: "CharacterID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.InsertData(
-                table: "Filmes",
-                columns: new[] { "FilmeID", "DataLancamento", "Diretor", "Episodio", "Produtor", "TextoAbertura", "Titulo" },
+                table: "Films",
+                columns: new[] { "FilmeID", "Director", "Episode", "OpeningCrawl", "Producer", "ReleaseDate", "Title" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2028, 12, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), "Jana Doe", 10, "Leo Smith", "After the fall of the Empire, the galaxy face", "The Rise of the Jedi" },
-                    { 2, null, null, null, null, null, "The Battle of the Stars" },
-                    { 3, null, null, null, null, null, "Return of the Light" },
-                    { 4, null, null, null, null, null, "Warriors of the Shadow Realm" },
-                    { 5, null, null, null, null, null, "The Galactic Quest" },
-                    { 6, null, null, null, null, null, "Rise of the Planetara" },
-                    { 7, null, null, null, null, null, "Echoes of the Stars" },
-                    { 8, null, null, null, null, null, "The Return of the Voyager" },
-                    { 9, null, null, null, null, null, "Voyager's Endgame" },
-                    { 10, null, null, null, null, null, "Galactic Odyssey" },
-                    { 11, null, null, null, null, null, "The Edge of the Universe" }
+                    { 1, "Jana Doe", 10, "After the fall of the Empire, the galaxy face", "Leo Smith", new DateTime(2028, 12, 15, 0, 0, 0, 0, DateTimeKind.Unspecified), "The Rise of the Jedi" },
+                    { 2, "", 0, "", "", null, "The Battle of the Stars" },
+                    { 3, "", 0, "", "", null, "Return of the Light" },
+                    { 4, "", 0, "", "", null, "Warriors of the Shadow Realm" },
+                    { 5, "", 0, "", "", null, "The Galactic Quest" },
+                    { 6, "", 0, "", "", null, "Rise of the Planetara" },
+                    { 7, "", 0, "", "", null, "Echoes of the Stars" },
+                    { 8, "", 0, "", "", null, "The Return of the Voyager" },
+                    { 9, "", 0, "", "", null, "Voyager's Endgame" },
+                    { 10, "", 0, "", "", null, "Galactic Odyssey" },
+                    { 11, "", 0, "", "", null, "The Edge of the Universe" }
                 });
 
             migrationBuilder.InsertData(
@@ -204,6 +221,22 @@ namespace may.the.fourth.backend.data.migrations
                     10
                 });
 
+            migrationBuilder.InsertData(
+                table: "FilmsCharacters",
+                column: "CharacterID",
+                values: new object[]
+                {
+                    1,
+                    2,
+                    3,
+                    4,
+                    5,
+                    6,
+                    7,
+                    8,
+                    9
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_Characters_PlanetID",
                 table: "Characters",
@@ -214,16 +247,19 @@ namespace may.the.fourth.backend.data.migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Characters");
+                name: "Films");
 
             migrationBuilder.DropTable(
-                name: "Filmes");
+                name: "FilmsCharacters");
 
             migrationBuilder.DropTable(
                 name: "FilmsPlanets");
 
             migrationBuilder.DropTable(
                 name: "Vehicles");
+
+            migrationBuilder.DropTable(
+                name: "Characters");
 
             migrationBuilder.DropTable(
                 name: "Planets");

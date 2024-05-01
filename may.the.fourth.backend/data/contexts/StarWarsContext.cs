@@ -9,30 +9,50 @@ namespace May.The.Fourth.Backend.Data.Contexts
         public StarWarsContext(DbContextOptions<StarWarsContext> options)
             : base(options) { }
 
-        public DbSet<FilmeEntity> Filmes { get; set; }
+        public DbSet<FilmEntity> Films { get; set; }
         public DbSet<PlanetEntity> Planets { get; set; }
         public DbSet<FilmPlanetEntity> FilmsPlanets { get; set; }
         public DbSet<CharacterEntity> Characters { get; set; }
         public DbSet<VehicleEntity> Vehicles { get; set; }
+        public DbSet<FilmCharacterEntity> FilmsCharacters { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            // filmes
-            var filmes = new FilmeEntity[]
+            // films
+            var films = new FilmEntity[]
             {
-                new FilmeEntity { Id = 1, Titulo = "The Rise of the Jedi", Episodio = 10, TextoAbertura = "After the fall of the Empire, the galaxy face", Diretor = "Jana Doe", Produtor = "Leo Smith", DataLancamento = new DateTime(2028, 12, 15) },
-                new FilmeEntity { Id = 2, Titulo = "The Battle of the Stars" },
-                new FilmeEntity { Id = 3, Titulo = "Return of the Light" },
-                new FilmeEntity { Id = 4, Titulo = "Warriors of the Shadow Realm" },
-                new FilmeEntity { Id = 5, Titulo = "The Galactic Quest" },
-                new FilmeEntity { Id = 6, Titulo = "Rise of the Planetara" },
-                new FilmeEntity { Id = 7, Titulo = "Echoes of the Stars" },
-                new FilmeEntity { Id = 8, Titulo = "The Return of the Voyager" },
-                new FilmeEntity { Id = 9, Titulo = "Voyager's Endgame" },
-                new FilmeEntity { Id = 10, Titulo = "Galactic Odyssey" },
-                new FilmeEntity { Id = 11, Titulo = "The Edge of the Universe" }
+                new FilmEntity { Id = 1, Title = "The Rise of the Jedi", Episode = 10, OpeningCrawl = "After the fall of the Empire, the galaxy face", Director = "Jana Doe", Producer = "Leo Smith", ReleaseDate = new DateTime(2028, 12, 15) },
+                new FilmEntity { Id = 2, Title = "The Battle of the Stars" },
+                new FilmEntity { Id = 3, Title = "Return of the Light" },
+                new FilmEntity { Id = 4, Title = "Warriors of the Shadow Realm" },
+                new FilmEntity { Id = 5, Title = "The Galactic Quest" },
+                new FilmEntity { Id = 6, Title = "Rise of the Planetara" },
+                new FilmEntity { Id = 7, Title = "Echoes of the Stars" },
+                new FilmEntity { Id = 8, Title = "The Return of the Voyager" },
+                new FilmEntity { Id = 9, Title = "Voyager's Endgame" },
+                new FilmEntity { Id = 10, Title = "Galactic Odyssey" },
+                new FilmEntity { Id = 11, Title = "The Edge of the Universe" }
             };
-            modelBuilder.Entity<FilmeEntity>().HasData(filmes);
+            modelBuilder.Entity<FilmEntity>().HasData(films);
+
+            // films-characters
+            var filmsCharacters = new FilmCharacterEntity[]
+            {
+                new FilmCharacterEntity { FilmId = 1, CharacterId = 1 }, //mas ver q isto era para o filme "A New Hope" script do Diogo
+                new FilmCharacterEntity { FilmId = 1, CharacterId = 2 },
+                new FilmCharacterEntity { FilmId = 1, CharacterId = 3 },
+                new FilmCharacterEntity { FilmId = 1, CharacterId = 4 },
+                new FilmCharacterEntity { FilmId = 1, CharacterId = 5 },
+                new FilmCharacterEntity { FilmId = 1, CharacterId = 6 },
+                new FilmCharacterEntity { FilmId = 1, CharacterId = 7 },
+                new FilmCharacterEntity { FilmId = 1, CharacterId = 8 },
+                new FilmCharacterEntity { FilmId = 1, CharacterId = 9 }
+            };
+            modelBuilder.Entity<FilmCharacterEntity>().HasData(filmsCharacters);
+
+            // films-vehicle
+            
+            // films-starships
 
             // planets
             modelBuilder.Entity<PlanetEntity>().HasData(
